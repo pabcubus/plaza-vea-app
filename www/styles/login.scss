@@ -1,0 +1,17 @@
+.login {
+	height: 100%;
+	box-sizing: border-box;
+	background: #E06666;
+
+	.login-title-wrapper{
+		color: white;
+	}
+
+	.login-panel{
+		background: white;
+
+		.dni-wrapper{
+			width: 95%;
+		}
+	}
+}
