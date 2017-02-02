@@ -1,17 +1,31 @@
 .login {
 	height: 100%;
 	box-sizing: border-box;
-	background: #E06666;
 
-	.login-title-wrapper{
-		color: white;
+	.login-title-wrapper {
+		padding-top: 50px;
+
+		* {
+			color: white;
+		}
+
+		.title-location {
+			display: block;
+			padding: 10px 0 20px;
+		}
 	}
 
-	.login-panel{
+	.login-panel {
 		background: white;
 
-		.dni-wrapper{
+		.dni-wrapper {
 			width: 95%;
+		}
+
+		.md-button {
+			color: white;
+			width: 80%;
+			padding: 10px 0;
 		}
 	}
 }

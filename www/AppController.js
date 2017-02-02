@@ -1,13 +1,23 @@
-app.controller('AppController', function($location, $mdSidenav){
+app.controller('AppController', function($rootScope, $location, $mdSidenav){
 	var vm = this;
 
-	vm.dni = '';
-	vm.logedIn = false;
+	vm.currentPath		= '';
+	vm.dni				= '';
+	vm.logedIn			= false;
 
-	vm.login = login;
-	vm.logout = login;
-	vm.toggleOpciones = toggleOpciones;
-	vm.toggleCarrito = toggleCarrito;
+	vm.login			= login;
+	vm.logout			= login;
+	vm.toggleOpciones	= toggleOpciones;
+	vm.toggleCarrito	= toggleCarrito;
+
+	$rootScope.$watch(
+		function(){
+			return $location.path();
+		},
+		function(){
+			vm.currentPath = $location.path();
+		}
+	);
 
 	function login(){
 		vm.logedIn = true;

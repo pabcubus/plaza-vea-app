@@ -31,16 +31,31 @@
 
 		<script src="setup/app.js"></script>
 
-		<link rel="stylesheet" href="styles/toolbar.css">
 		<link rel="stylesheet" href="styles/shared.css">
+		<link rel="stylesheet" href="styles/toolbar.css">
 		<link rel="stylesheet" href="styles/login.css">
+		<link rel="stylesheet" href="styles/bienvenido.css">
 	</head>
-	<body ng-app="demo" ng-controller="AppController as ac" ng-cloak>
-		<div ng-include="'modules/toolbar/html/toolbar.html'" ng-show="ac.logedIn"></div>
+	<body
+		ng-app="demo"
+		ng-controller="AppController as ac"
+		ng-class="{'pv-background-login' : !ac.logedIn, 'pv-background-normal' : ac.logedIn}"
+		ng-cloak>
 
-		<ui-view></ui-view>
+		<div
+			ng-include="'modules/toolbar/html/toolbar.html'"
+			ng-show="ac.logedIn && ac.currentPath == '/login'">
+		</div>
 
+		<div layout="column">
+			<ui-view></ui-view>
+
+			<div ng-include="'modules/bottom_bar/html/bottom_bar.html'" ng-show="ac.logedIn"></div>
+		</div>
+
+		<!--
 		<div ng-include="'modules/left_menu/html/left_menu.html'" ng-show="ac.logedIn"></div>
 		<div ng-include="'modules/right_menu/html/right_menu.html'" ng-show="ac.logedIn"></div>
+		-->
 	</body>
 </html>

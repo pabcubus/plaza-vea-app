@@ -2,6 +2,12 @@
 	<div class="login-title-wrapper pv-text-center">
 		<div class="md-title">Bienvenido!</div>
 		<img src="images/logo.png">
+		<a class="title-location" href="#">
+			<md-icon aria-label="menu" class="material-icons step">
+				room
+			</md-icon>
+			PlazaVea Miraflores
+		</a>
 	</div>
 
 	<md-whiteframe class="md-whiteframe-1dp login-panel" layout="column" layout-align="center center">
@@ -10,7 +16,7 @@
 			<input ng-model="user.firstName">
 		</md-input-container>
 
-		<md-button class="md-raised md-primary" flex-xs="100" flex-sm="100" ng-click="ac.login()">
+		<md-button class="pv-background-primary" flex-xs="100" flex-sm="100" ng-click="ac.login()">
 			Ingresar
 		</md-button>
 	</md-whiteframe>

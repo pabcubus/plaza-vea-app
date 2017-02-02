@@ -1,10 +1,18 @@
 .login {
   height: 100%;
-  box-sizing: border-box;
-  background: #E06666; }
+  box-sizing: border-box; }
   .login .login-title-wrapper {
-    color: white; }
+    padding-top: 50px; }
+    .login .login-title-wrapper * {
+      color: white; }
+    .login .login-title-wrapper .title-location {
+      display: block;
+      padding: 10px 0 20px; }
   .login .login-panel {
     background: white; }
     .login .login-panel .dni-wrapper {
       width: 95%; }
+    .login .login-panel .md-button {
+      color: white;
+      width: 80%;
+      padding: 10px 0; }

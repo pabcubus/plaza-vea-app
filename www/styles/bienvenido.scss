@@ -1,0 +1,22 @@
+.bienvenido {
+	overflow: hidden;
+
+	.bienvenido-wrapper {
+		position: relative;
+
+		img {
+			position: absolute;
+			top: 30px;
+			width: 120%;
+			left: -10%;
+		}
+
+		.bienvenido-saludo {
+			margin: 200px 0 5px;
+		}
+
+		.bienvenido-saludo-parrafo {
+			margin: 0;
+		}
+	}
+}
