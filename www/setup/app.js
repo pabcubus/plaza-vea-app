@@ -8,6 +8,12 @@ app.config(
 				controller: 'LoginController',
 				controllerAs: 'lc'
 			})
+			.state('producto', {
+				url: '/producto/{ean:\\d{3,}}',
+				templateUrl: 'screens/producto/html/producto.html',
+				controller: 'ProductoController',
+				controllerAs: 'pc'
+			})
 			.state('menu', {
 				url: '/menu',
 				templateUrl: 'screens/menu/html/menu.html',

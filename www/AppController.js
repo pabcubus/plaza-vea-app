@@ -1,9 +1,10 @@
-app.controller('AppController', function($rootScope, $location, $mdSidenav){
+app.controller('AppController', function($rootScope, $location, $mdSidenav, SessionService){
 	var vm = this;
 
 	vm.currentPath		= '';
 	vm.dni				= '';
 	vm.logedIn			= false;
+	vm.user				= {};
 
 	vm.login			= login;
 	vm.logout			= login;
@@ -20,8 +21,18 @@ app.controller('AppController', function($rootScope, $location, $mdSidenav){
 	);
 
 	function login(){
-		vm.logedIn = true;
-		$location.path('/bienvenido');
+		SessionService.login(vm.dni)
+			.then(function(user){
+				vm.user		= user;
+				vm.logedIn	= true;
+				$location.path('/bienvenido');
+			})
+			.catch(function(data){
+				vm.logedIn = false;
+				$location.path('/login');
+
+				alert(data.message);
+			});
 	}
 
 	function logout(){

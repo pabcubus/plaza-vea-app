@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 					'styles/shared.css': 'styles/shared.scss',
 					'styles/toolbar.css': 'styles/toolbar.scss',
 					'styles/login.css': 'styles/login.scss',
+					'styles/producto.css': 'styles/producto.scss',
 					'styles/bienvenido.css': 'styles/bienvenido.scss'
 				}
 			}

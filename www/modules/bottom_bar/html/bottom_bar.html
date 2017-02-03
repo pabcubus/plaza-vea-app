@@ -1,4 +1,4 @@
-<footer ng-show="ac.logedIn" class="pv-footer">
+<footer class="pv-footer" ng-controller="BottomBarController as bbc">
 	<div layout="row">
 		<div flex>
 			<md-button>
@@ -8,7 +8,7 @@
 			</md-button>
 		</div>
 		<div class="scanner-wrapper" flex>
-			<button>
+			<button ng-click="bbc.scan()">
 		</div>
 		<div flex>
 		</div>
