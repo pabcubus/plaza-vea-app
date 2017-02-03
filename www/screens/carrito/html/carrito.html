@@ -6,16 +6,16 @@
 	</md-button>
 	<div class="carrito-list">
 		<div class="carrito-list-item" layout="row" ng-repeat="producto in cc.carrito">
-			<div class="item-image">
+			<div class="item-image" flex="20">
 				<img src="images/productos/{{producto.codigo}}.jpg">
 			</div>
-			<h4 class="item-name">
+			<h4 class="item-name" flex="40">
 				{{producto.nombre}}
 			</h4>
 			<div class="item-qtty">
-				<input class="cantidad" ng-model="producto.cantidad" type="number"/>
+				<input class="cantidad" ng-disabled="producto.pesable" ng-model="producto.cantidad" type="number"/>
 			</div>
-			<div class="item-delete" layout-align="center start">
+			<div class="item-delete" layout-align="center start" flex="20">
 				<md-button class="md-fab pv-button-primary" ng-click="cc.removeProducto(producto)">
 					<md-icon aria-label="menu" class="material-icons step">
 						close

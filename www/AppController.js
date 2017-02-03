@@ -2,7 +2,7 @@ app.controller('AppController', function($rootScope, $location, $mdSidenav, Sess
 	var vm = this;
 
 	vm.currentPath		= '';
-	vm.dni				= '';
+	vm.loginText		= '';
 	vm.logedIn			= false;
 	vm.user				= {};
 
@@ -21,7 +21,7 @@ app.controller('AppController', function($rootScope, $location, $mdSidenav, Sess
 	);
 
 	function login(){
-		SessionService.login(vm.dni)
+		SessionService.login(vm.loginText)
 			.then(function(user){
 				vm.user		= user;
 				vm.logedIn	= true;

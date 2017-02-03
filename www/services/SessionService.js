@@ -1,6 +1,7 @@
 app.service('SessionService', function($q, lodash){
 	var vm = this;
 
+	vm.user = {};
 	vm.users = [
 		{dni:9298312, nombre:'CARLOS ALBERTO MARTIN', apellido:'ARMIJO', correo:'carlos.flores@spsa.com.pe'},
 		{dni:7909326, nombre:'ADELBERTO DOMINIK', apellido:'CARO', correo:'Adelberto.Muller@spsa.com.pe'},
@@ -20,19 +21,24 @@ app.service('SessionService', function($q, lodash){
 		{dni:10810736, nombre:'CAROLINA', apellido:'ARRIARAN', correo:'carolina.filinich@spsa.com.pe'},
 		{dni:45197359, nombre:'CAROLINA ALEJANDRA', apellido:'CASAS', correo:'alejandra.pye@spsa.com.pe'},
 		{dni:44444584, nombre:'PIERO ALEXANDER', apellido:'ZALDIVAR', correo:'Piero.Ibanez@intercorpretail.pe'},
-		{dni:46818879, nombre:'EDUARDO', apellido:'CUSIRRAMOS', correo:'jleon@spsa.com.pe'}
+		{dni:46818879, nombre:'EDUARDO', apellido:'CUSIRRAMOS', correo:'jleon@spsa.com.pe'},
+		{dni:1234, nombre:'EDUARDO', apellido:'CUSIRRAMOS', correo:'pablo@hotmail.com'}
 	];
 
 	vm.login = login;
 
-	function login(dni){
+	function login(loginText){
 		var deferred = $q.defer();
 
-		var user = lodash.find(vm.users, { 'dni': dni });
+		var user = lodash.find(vm.users, function(user){
+			return user.dni == loginText || user.correo == loginText;
+		});
 
 		if (lodash.isObject(user)) {
 			var nombres = user.nombre.split(' ');
 			user.nombre = nombres[0];
+
+			vm.user = user;
 
 			deferred.resolve(user);
 		} else {

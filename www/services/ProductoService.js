@@ -33,7 +33,6 @@ app.service('ProductoService', function($q, lodash){
 		});
 
 		if (lodash.isObject(producto)) {
-			producto.ean		= ean;
 			producto.cantidad	= 1;
 			deferred.resolve(producto);
 		} else {

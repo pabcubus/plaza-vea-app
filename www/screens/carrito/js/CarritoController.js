@@ -19,7 +19,6 @@ app.controller('CarritoController', function($state, CarritoService){
 	}
 
 	function terminarCompra(){
-		CarritoService.clearCarrito();
 		$state.go('compra_completada');
 	}
 });

@@ -15,7 +15,7 @@
     position: absolute; }
     .producto .producto-wrapper .producto-legend .cantidad {
       display: inline-block;
-      width: 20px;
+      width: 50px;
       padding: 10px 10px;
       text-align: center;
       margin: 0 0 0 30px;
