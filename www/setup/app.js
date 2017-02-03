@@ -8,23 +8,29 @@ app.config(
 				controller: 'LoginController',
 				controllerAs: 'lc'
 			})
+			.state('bienvenido', {
+				url: '/bienvenido',
+				templateUrl: 'screens/bienvenido/html/bienvenido.html',
+				controller: 'BienvenidoController',
+				controllerAs: 'bc'
+			})
 			.state('producto', {
 				url: '/producto/{ean:\\d{3,}}',
 				templateUrl: 'screens/producto/html/producto.html',
 				controller: 'ProductoController',
 				controllerAs: 'pc'
 			})
-			.state('menu', {
-				url: '/menu',
-				templateUrl: 'screens/menu/html/menu.html',
-				controller: 'MenuController',
-				controllerAs: 'mc'
+			.state('carrito', {
+				url: '/carrito',
+				templateUrl: 'screens/carrito/html/carrito.html',
+				controller: 'CarritoController',
+				controllerAs: 'cc'
 			})
-			.state('bienvenido', {
-				url: '/bienvenido',
-				templateUrl: 'screens/bienvenido/html/bienvenido.html',
-				controller: 'BienvenidoController',
-				controllerAs: 'bc'
+			.state('compra_completada', {
+				url: '/compra_completada',
+				templateUrl: 'screens/compra_completada/html/compra_completada.html',
+				controller: 'CompraCompletadaController',
+				controllerAs: 'ccc'
 			});
 	}
 );

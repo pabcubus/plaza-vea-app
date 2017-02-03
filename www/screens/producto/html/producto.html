@@ -1,8 +1,16 @@
+<div ng-include="'modules/toolbar/html/toolbar.html'"></div>
+
 <div class="producto" layout-align="center center" flex>
 	<div class="producto-wrapper">
-		<img src="/images/productos/{{pc.producto.codigo}}.jpg">
+		<img src="file:///android_asset/www/images/productos/{{pc.producto.codigo}}.jpg">
 		<div class="producto-legend">
-
+			<h3>
+				{{pc.producto.nombre}}
+			</h3>
+			compra: <input class="cantidad" ng-model="pc.producto.cantidad" type="number"/>
+			<md-button class="pv-button-primary agregar-btn" ng-click="pc.addProducto()">
+				Agregar
+			</md-button>
 		</div>
 	</div>
 </div>

@@ -1,11 +1,14 @@
 <footer class="pv-footer" ng-controller="BottomBarController as bbc">
 	<div layout="row">
-		<div flex>
-			<md-button>
+		<div flex class="carrito-wrapper">
+			<md-button ui-sref="carrito">
 				<md-icon aria-label="menu" class="material-icons step">
 					shopping_cart
 				</md-icon>
 			</md-button>
+			<span class="badge" ng-show="bbc.carritoItems > 0">
+				{{bbc.carritoItems}}
+			</span>
 		</div>
 		<div class="scanner-wrapper" flex>
 			<button ng-click="bbc.scan()">

@@ -1,28 +1,23 @@
-app.controller('BottomBarController', function($location, ProductoService) {
+app.controller('BottomBarController', function($rootScope, $state, CarritoService) {
 	var vm = this;
 
+	vm.carritoItems	= 0;
+
 	vm.scan = scan;
+
+	$rootScope.$watch(
+		function(){
+			return CarritoService.carrito.length;
+		},
+		function(){
+			vm.carritoItems = CarritoService.carrito.length;
+		}
+	);
 
 	function scan() {
 		cordova.plugins.barcodeScanner.scan(
 			function(result) {
-				$location('/producto/'+result.text);
-
-				/*
-				alert("We got a barcode\n" +
-					"Result: " + result.text + "\n" +
-					"Format: " + result.format + "\n" +
-					"Cancelled: " + result.cancelled);*/
-
-					/*
-				ProductoService.getProduct(result.text)
-					.then(function(producto){
-						$location('/producto/'+producto.ea);
-					})
-					.catch(function(data){
-						alert(data.message);
-					});
-					*/
+				$state.go('producto', {'ean': result.text});
 			},
 			function(error) {
 				alert("Error escaneando producto");
@@ -34,7 +29,7 @@ app.controller('BottomBarController', function($location, ProductoService) {
 				prompt: "", // Android
 				resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
 				formats: "EAN_13", // default: all but PDF_417 and RSS_EXPANDED
-				orientation: "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
+				orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
 				disableAnimations: true // iOS
 			}
 		);

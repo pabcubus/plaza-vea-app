@@ -28,9 +28,13 @@ app.service('ProductoService', function($q, lodash){
 	function getProduct(ean){
 		var deferred = $q.defer();
 
-		var producto = lodash.find(vm.products, { 'ean': ean });
+		var producto = lodash.find(vm.products, function(prd){
+			return prd.ean.indexOf(ean) != -1;
+		});
 
 		if (lodash.isObject(producto)) {
+			producto.ean		= ean;
+			producto.cantidad	= 1;
 			deferred.resolve(producto);
 		} else {
 			deferred.reject({message: 'Producto no registrado'});

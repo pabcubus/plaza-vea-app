@@ -1,8 +1,10 @@
-app.controller('ProductoController', function($location, $stateParams, ProductoService){
+app.controller('ProductoController', function($state, $stateParams, ProductoService, CarritoService){
 	var vm = this;
 
 	vm.ean			= $stateParams.ean;
 	vm.producto		= {};
+
+	vm.addProducto	= addProducto;
 
 	init();
 
@@ -14,18 +16,25 @@ app.controller('ProductoController', function($location, $stateParams, ProductoS
 		var eanToSeach			= '';
 
 		if (codigoinicial == '02') {
-			eanToSeach = codigoinicial + codigoproducto + 'xxxxx' + codigoverificacion;
+			eanToSeach = codigoinicial + codigoproducto + 'xxxxx';
 		} else {
 			eanToSeach = vm.ean;
 		}
+
+		console.log('EAN: ' + eanToSeach);
 
 		ProductoService.getProduct(eanToSeach)
 			.then(function(producto){
 				vm.producto = producto;
 			})
 			.catch(function(data){
-				$location.path('/bienvenido');
+				$state.go('bienvenido');
 				alert(data.message);
 			});
+	}
+
+	function addProducto(){
+		CarritoService.addProducto(angular.copy(vm.producto));
+		$state.go('carrito');
 	}
 });

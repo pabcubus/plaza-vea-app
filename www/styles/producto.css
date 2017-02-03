@@ -2,13 +2,26 @@
   position: relative;
   text-align: center; }
   .producto .producto-wrapper img {
-    width: 60%; }
+    width: 80%; }
   .producto .producto-wrapper .producto-legend {
+    text-align: left;
     -webkit-box-shadow: 0 0 26px 3px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0 0 26px 3px rgba(0, 0, 0, 0.75);
-    box-shadow: 0 0 26px 3px rgba(0, 0, 0, 0.75);
     width: 100%;
-    height: 100px;
     background-color: #DDDDDD;
-    top: 220px;
+    top: 200px;
+    padding: 10px 10%;
+    box-sizing: border-box;
     position: absolute; }
+    .producto .producto-wrapper .producto-legend .cantidad {
+      display: inline-block;
+      width: 20px;
+      padding: 10px 10px;
+      text-align: center;
+      margin: 0 0 0 30px;
+      border: 1px solid #ccc;
+      border-radius: 5px; }
+    .producto .producto-wrapper .producto-legend .agregar-btn {
+      display: block;
+      margin: 20px auto;
+      width: 50%; }

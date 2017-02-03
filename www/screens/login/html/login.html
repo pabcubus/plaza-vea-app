@@ -16,11 +16,14 @@
 			<input type="number" ng-model="ac.dni">
 		</md-input-container>
 
-		<md-button class="pv-background-primary" flex-xs="100" flex-sm="100" ng-click="ac.login()">
+		<md-button class="pv-button-primary" flex-xs="100" flex-sm="100" ng-click="ac.login()">
 			Ingresar
 		</md-button>
-		<a ui-sref="producto({ codigo: '7750182000796' })">
+		<a ui-sref="producto({ ean: '0201249005252' })">
 			sample
+		</a>
+		<a ui-sref="carrito">
+			carrito
 		</a>
 	</md-whiteframe>
 </div>
