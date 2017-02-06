@@ -7,7 +7,13 @@
 			<h3>
 				{{pc.producto.nombre}}
 			</h3>
-			Cantidad: <input class="cantidad" ng-disabled="pc.producto.pesable" ng-model="pc.producto.cantidad" type="number"/>
+			<span ng-show="pc.producto.pesable">
+				Peso (gr):
+			</span>
+			<span ng-show="!pc.producto.pesable">
+				Cantidad:
+			</span>
+			<input class="cantidad" ng-disabled="pc.producto.pesable" ng-model="pc.producto.cantidad" type="number"/>
 			<md-button class="pv-button-primary agregar-btn" ng-click="pc.addProducto()">
 				Agregar
 			</md-button>
