@@ -45,15 +45,15 @@
 	position: fixed;
 	width: 100%;
 	box-sizing: border-box;
+	z-index: 999;
 
 	.carrito-wrapper {
 		position: relative;
 
 		.badge {
 			position: absolute;
-			right: 40%;
+			right: 35%;
 			margin: 0 auto;
-			width: 10px;
 			padding: 1px 5px;
 			background: red;
 			color: white;
@@ -76,6 +76,10 @@
 			margin: 0 auto;
 			background-color: transparent;
 			background-image: url("../images/footerButton.png");
+
+			&:focus {
+				outline:0;
+			}
 		}
 	}
 }

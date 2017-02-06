@@ -31,7 +31,7 @@ app.service('SessionService', function($q, lodash){
 		var deferred = $q.defer();
 
 		var user = lodash.find(vm.users, function(user){
-			return user.dni == loginText || user.correo == loginText;
+			return user.dni == loginText || user.correo.toLowerCase() == loginText.toLowerCase();
 		});
 
 		if (lodash.isObject(user)) {

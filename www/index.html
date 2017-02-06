@@ -29,7 +29,7 @@
 		var app = angular.module('demo', ['ngMaterial', 'ui.router', 'ngLodash']);
 	</script>
 
-	<!-- Servicios -->	
+	<!-- Servicios -->
 	<script src="services/DataService.js"></script>
 	<script src="services/ProductoService.js"></script>
 	<script src="services/SessionService.js"></script>
@@ -70,14 +70,17 @@
 	<link rel="stylesheet" href="styles/compra_completada.css">
 </head>
 
-<body
-	ng-app="demo"
-	ng-controller="AppController as ac"
-	ng-class="{'pv-background-login' : ac.currentPath.indexOf('login') != -1, 'pv-background-normal' : ac.currentPath.indexOf('login') == -1}"
-	ng-cloak>
+<body ng-app="demo" ng-controller="AppController as ac" ng-class="{'pv-background-login' : ac.currentPath.indexOf('login') != -1, 'pv-background-normal' : ac.currentPath.indexOf('login') == -1}" ng-cloak>
 
-	<div layout="column">
-		<ui-view></ui-view>
+	<div layout="column" layout-fill>
+		<div ng-hide="ac.currentPath.indexOf('login') != -1 || ac.currentPath.indexOf('bienvenido') != -1">
+			<div ng-include="'modules/toolbar/html/toolbar.html'"></div>
+		</div>
+
+		<main flex layout="column">
+			<div ui-view layout="column" flex>
+			</div>
+		</main>
 
 		<div ng-include="'modules/bottom_bar/html/bottom_bar.html'" ng-hide="ac.currentPath.indexOf('login') != -1"></div>
 	</div>

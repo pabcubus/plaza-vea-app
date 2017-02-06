@@ -8,6 +8,8 @@
     .login .login-title-wrapper .title-location {
       display: block;
       padding: 10px 0 20px; }
+      .login .login-title-wrapper .title-location:focus {
+        outline: 0; }
   .login .login-panel {
     background: white; }
     .login .login-panel .dni-wrapper {

@@ -12,6 +12,10 @@
 		.title-location {
 			display: block;
 			padding: 10px 0 20px;
+
+			&:focus {
+				outline:0;
+			}
 		}
 	}
 

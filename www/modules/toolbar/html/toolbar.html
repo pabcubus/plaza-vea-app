@@ -1,6 +1,7 @@
 <md-toolbar class="pv-toolbar">
 	<div class="md-toolbar-tools pv-background-primary">
-		<md-button class="md-icon-button" aria-label="back" ui-sref="bienvenido">
+		<md-button class="md-icon-button" aria-label="back" ui-sref="bienvenido"
+			ng-hide="ac.currentPath.indexOf('bienvenido') != -1">
 			<md-icon
 				aria-label="menu"
 				class="material-icons step">

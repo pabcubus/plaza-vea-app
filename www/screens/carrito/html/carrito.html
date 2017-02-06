@@ -1,10 +1,10 @@
-<div ng-include="'modules/toolbar/html/toolbar.html'"></div>
 
-<div class="carrito">
-	<md-button class="pv-button-primary comprar-btn" ng-click="cc.terminarCompra()" ng-disabled="cc.carrito.length == 0">
+
+<div class="carrito" layout="column" flex="100">
+	<md-button class="pv-button-primary comprar-btn" flex="10" ng-click="cc.terminarCompra()" ng-disabled="cc.carrito.length == 0" flex>
 		Comprar
 	</md-button>
-	<div class="carrito-list">
+	<div class="carrito-list" flex="90">
 		<div class="carrito-list-item" layout="row" ng-repeat="producto in cc.carrito">
 			<div class="item-image" flex="20">
 				<img src="images/productos/{{producto.codigo}}.jpg">

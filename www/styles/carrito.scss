@@ -1,14 +1,15 @@
 .carrito {
+	padding: 5% 0;
+
 	.comprar-btn {
-		margin: 5% auto 20px;
+		margin: 0 auto 20px;
 		width: 60%;
 		display: block;
 	}
 
 	.carrito-list {
-		height: 380px;
 		overflow: auto;
-		padding: 10px 0;
+		padding: 10px 0 70px;
 		background: white;
 		-webkit-box-shadow: 0 0 26px 3px rgba(0,0,0,0.75);
 		-moz-box-shadow: 0 0 26px 3px rgba(0,0,0,0.75);
