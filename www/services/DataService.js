@@ -10,7 +10,8 @@ app.service('DataService', function($q, $http, lodash){
 		var httpData = {
 			'method': operation,
 			'url': url,
-			'data': (data ? data : {})
+			'data': (data ? data : {}),
+			'timeout': 2000
 		};
 
 		$http(httpData).then(function successCallback(response) {
