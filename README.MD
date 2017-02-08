@@ -7,6 +7,7 @@ Este proyecto requiere de tener instalado:
 - Cordova
 - GIT
 - Android SDK con la ultima version de Android (SDK 7)
+- XCode
 
 Tambien usa las tecnologías:
 - AngularJS
