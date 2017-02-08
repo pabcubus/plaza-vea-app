@@ -8,10 +8,15 @@ Este proyecto requiere de tener instalado:
 - GIT
 - Android SDK con la ultima version de Android (SDK 7)
 
+Tambien usa las tecnologías:
+- AngularJS
+- Material Angular
+- UI Route para AngularJS
+
 Para solo preparar el proyecto, se debe correr estos comandos desde la Terminal ó CMD:
 ```sh
 $ git clone https://github.com/pabcubus/plaza-vea-app.git
-$ cd /folder/donde/clonaste/tu/proyecto
+$ cd /folder/donde/se/clono/el/proyecto
 $ cd www
 $ npm install
 $ bower install
