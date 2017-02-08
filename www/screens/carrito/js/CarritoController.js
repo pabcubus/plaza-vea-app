@@ -47,7 +47,12 @@ app.controller('CarritoController', function($timeout, $state, lodash, SessionSe
 				}, 500);
 			})
 			.catch(function(data){
-				alert('Se presento un problema de conexión, y no se pudo terminar el proceso de compra');
+				navigator.notification.alert(
+					'Se presento un problema de conexión, y no se pudo terminar el proceso de compra',
+					null,
+					'Alerta',
+					'OK'
+				);
 			});
 
 	}

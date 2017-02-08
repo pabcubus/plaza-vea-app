@@ -11,12 +11,12 @@
 	</div>
 
 	<md-whiteframe class="md-whiteframe-1dp login-panel" layout="column" layout-align="center center">
-		<md-input-container class="md-block dni-wrapper" flex-xs="100" flex-sm="100">
+		<md-input-container class="md-block dni-wrapper" flex>
 			<label>Ingrese su DNI o email</label>
 			<input type="text" ng-model="ac.loginText">
 		</md-input-container>
 
-		<md-button class="pv-button-primary" flex-xs="100" flex-sm="100" ng-click="ac.login()">
+		<md-button class="pv-button-primary" flex ng-click="ac.login()">
 			Ingresar
 		</md-button>
 	</md-whiteframe>

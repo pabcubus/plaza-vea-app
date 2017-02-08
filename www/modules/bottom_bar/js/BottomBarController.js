@@ -1,15 +1,15 @@
 app.controller('BottomBarController', function($rootScope, $state, CarritoService) {
 	var vm = this;
 
-	vm.carritoItems	= 0;
+	vm.carritoItems = 0;
 
 	vm.scan = scan;
 
 	$rootScope.$watch(
-		function(){
+		function() {
 			return CarritoService.carrito.length;
 		},
-		function(){
+		function() {
 			vm.carritoItems = CarritoService.carrito.length;
 		}
 	);
@@ -17,10 +17,17 @@ app.controller('BottomBarController', function($rootScope, $state, CarritoServic
 	function scan() {
 		cordova.plugins.barcodeScanner.scan(
 			function(result) {
-				$state.go('producto', {'ean': result.text});
+				$state.go('producto', {
+					'ean': result.text
+				});
 			},
 			function(error) {
-				alert("Error escaneando producto");
+				navigator.notification.alert(
+					'Error escaneando producto',
+					null,
+					'Alerta',
+					'OK'
+				);
 			}, {
 				preferFrontCamera: false, // iOS and Android
 				torchOn: false, // Android, launch with the torch switched on (if available)
