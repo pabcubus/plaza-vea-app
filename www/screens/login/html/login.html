@@ -10,14 +10,16 @@
 		</a>
 	</div>
 
-	<md-whiteframe class="md-whiteframe-1dp login-panel" layout="column" layout-align="center center">
-		<md-input-container class="md-block dni-wrapper" flex>
-			<label>Ingrese su DNI o email</label>
-			<input type="text" ng-model="ac.loginText">
-		</md-input-container>
+	<form name="loginForm" ng-submit="ac.login(loginForm)" novalidate>
+		<md-whiteframe class="md-whiteframe-1dp login-panel" layout="column" layout-align="center center">
+			<md-input-container class="md-block dni-wrapper" flex>
+				<label>Ingrese su DNI o email</label>
+				<input name="id" type="text" ng-model="ac.loginText" ng-minlength="3" required>
+			</md-input-container>
 
-		<md-button class="pv-button-primary" flex ng-click="ac.login()">
-			Ingresar
-		</md-button>
-	</md-whiteframe>
+			<md-button type="submit" class="pv-button-primary" flex>
+				Ingresar
+			</md-button>
+		</md-whiteframe>
+	</form>
 </div>

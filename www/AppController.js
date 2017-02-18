@@ -1,4 +1,4 @@
-app.controller('AppController', function($rootScope, $location, $mdSidenav, SessionService){
+app.controller('AppController', function($scope, $rootScope, $location, $mdSidenav, SessionService){
 	var vm = this;
 
 	vm.currentPath		= '';
@@ -20,7 +20,12 @@ app.controller('AppController', function($rootScope, $location, $mdSidenav, Sess
 		}
 	);
 
-	function login(){
+	function login(form){
+		if (!form.$valid) {
+			alert('Revisa si faltan datos por llenar');
+			return false;
+		}
+
 		SessionService.login(vm.loginText)
 			.then(function(user){
 				vm.user		= user;
