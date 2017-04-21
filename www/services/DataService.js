@@ -11,7 +11,7 @@ app.service('DataService', function($q, $http, lodash){
 			'method': operation,
 			'url': url,
 			'data': (data ? data : {}),
-			'timeout': 2000
+			'timeout': 10000
 		};
 
 		$http(httpData).then(function successCallback(response) {
