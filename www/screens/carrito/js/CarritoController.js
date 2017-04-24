@@ -42,7 +42,7 @@ app.controller('CarritoController', function($timeout, $state, lodash, SessionSe
 			jsonRequest.items.push(
 				{
 					barcode: prd.ean,
-					qty: prd.cantidad
+					qty: prd.pesable ? Math.round(prd.cantidad * 1000) : prd.cantidad
 				}
 			);
 		});

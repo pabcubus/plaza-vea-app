@@ -34,9 +34,7 @@
           font-size: 12px;
           font-weight: bold; }
           .carrito .carrito-list .carrito-list-item .item-description .item-precio .item-precio-unitario .item-precio-unitario-valor span {
-            font-size: 11px;
-            color: #1C3B5F;
-            font-weight: bold; }
+            font-size: 11px; }
       .carrito .carrito-list .carrito-list-item .item-description .item-totales label {
         color: #373737;
         font-size: 13px; }
