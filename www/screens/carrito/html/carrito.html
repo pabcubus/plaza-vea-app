@@ -25,7 +25,7 @@
 							Precio Unitario:
 						</div>
 						<div class="item-precio-unitario-valor">
-							S/ {{producto.precio}}
+							S/ {{producto.precio}} <span ng-show="producto.pesable">x KG</span>
 						</div>
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 					</div>
 					<div flex="50">
 						<div class="item-precio-total-title">
-							Precio Unitario:
+							Precio Total:
 						</div>
 						<div class="item-precio-total-valor">
 							S/ {{producto.total}}
