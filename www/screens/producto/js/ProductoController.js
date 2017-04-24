@@ -27,7 +27,7 @@ app.controller('ProductoController', function($state, $stateParams, ProductoServ
 				vm.producto				= angular.copy(producto);
 				vm.producto.ean			= codigoinicial + codigoproducto + peso + (codigoinicial == '02' ? producto.ean.substring(12, 13) : codigoverificacion);
 				vm.producto.pesable		= codigoinicial == '02' ? true : false;
-				vm.producto.cantidad	= codigoinicial == '02' ? parseInt(peso) : vm.producto.cantidad;
+				vm.producto.cantidad	= codigoinicial == '02' ? (parseInt(peso) / 1000) : vm.producto.cantidad;
 				vm.producto.total		= Math.round((vm.producto.cantidad * vm.producto.precio) * 100) / 100;
 			})
 			.catch(function(data){
