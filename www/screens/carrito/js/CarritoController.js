@@ -18,7 +18,8 @@ app.controller('CarritoController', function($timeout, $state, lodash, SessionSe
 
 	function removeProducto(producto){
 		CarritoService.removeProducto(angular.copy(producto));
-		vm.carrito = CarritoService.carrito;
+		vm.carrito		= CarritoService.carrito;
+		vm.carritoTotal	= CarritoService.carritoTotal;
 	}
 
 	function changeCantidadProducto(producto){

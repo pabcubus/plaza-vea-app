@@ -36,6 +36,7 @@
 							class="item-cantidad pv-text-center"
 							type="number"
 							ng-model="producto.cantidad"
+							ng-disabled="producto.pesable"
 							ng-change="cc.changeCantidadProducto(producto)">
 					</div>
 					<div flex="50">
