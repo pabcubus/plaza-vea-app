@@ -13,14 +13,30 @@
     padding: 10px 10%;
     box-sizing: border-box;
     position: absolute; }
-    .producto .producto-wrapper .producto-legend .cantidad {
-      display: inline-block;
-      width: 50px;
-      padding: 10px 10px;
+    .producto .producto-wrapper .producto-legend .producto-precio {
+      padding-bottom: 5px;
+      border-bottom: 1px solid #ccc; }
+      .producto .producto-wrapper .producto-legend .producto-precio .producto-precio-unitario .producto-precio-unitario-title {
+        font-size: 12px;
+        width: 50px;
+        display: inline-block; }
+      .producto .producto-wrapper .producto-legend .producto-precio .producto-precio-unitario .producto-precio-unitario-value {
+        font-size: 20px; }
+        .producto .producto-wrapper .producto-legend .producto-precio .producto-precio-unitario .producto-precio-unitario-value .pesable {
+          font-size: 11px; }
+      .producto .producto-wrapper .producto-legend .producto-precio .cantidad {
+        font-size: 13px;
+        width: 25px;
+        border: 1px solid #C0C0C0;
+        padding: 5px;
+        background-color: #F8F8F8; }
+    .producto .producto-wrapper .producto-legend .producto-total {
+      padding: 5px 0 0;
       text-align: center;
-      margin: 0 0 0 30px;
-      border: 1px solid #ccc;
-      border-radius: 5px; }
+      font-size: 14px; }
+      .producto .producto-wrapper .producto-legend .producto-total span {
+        font-size: 20px;
+        font-weight: bold; }
     .producto .producto-wrapper .producto-legend .agregar-btn {
       display: block;
       margin: 20px auto;

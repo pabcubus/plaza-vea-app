@@ -1,11 +1,11 @@
-.carrito {
-	padding: 5% 0;
+@import 'config.scss';
 
+.carrito {
 	.carrito-control{
-		max-height: 80px;
+		padding: 15px;
 
 		.comprar-btn {
-			margin: 0 auto 20px;
+			margin: 0 auto;
 			width: 60%;
 			display: block;
 		}
@@ -13,42 +13,89 @@
 
 	.carrito-list {
 		overflow: auto;
-		padding: 10px 0 70px;
-		background: white;
-		-webkit-box-shadow: 0 0 26px 3px rgba(0,0,0,0.75);
-		-moz-box-shadow: 0 0 26px 3px rgba(0,0,0,0.75);
+		padding: 10px 0 0;
+		background-color: white;
 
 		.carrito-list-item {
+			padding: 0 0 5px;
+			margin: 0 10px 8px;
+			border-bottom: 1px solid #E0E0E0;
+
 			.item-image {
 				img {
 					height: 60px;
 				}
 			}
+			.item-description {
+				position: relative;
 
-			.item-name {
-				margin: 0;
-				padding: 15px 0 0;
-				overflow: hidden;
-				line-height: 20px;
-				height: 55px;
-			}
+				.item-btn-delete{
+					position: absolute;
+					right: 0;
+					top: 0;
+				}
+				.item-name{
+					margin: 0;
+					width: 80%;
+					padding-bottom: 5px;
+					min-height: 25px;
+				}
+				.item-precio{
+					.item-precio-unitario{
+						color: #8E8E8E;
 
-			.item-qtty {
-				padding-top: 15px;
+						.item-precio-unitario-title{
+							font-size: 11px;
+						}
 
-				input {
-					width: 50px;
-					padding: 5px 2px;
-					border: 1px solid #ccc;
-					border-radius: 5px;
-					margin: 0 0 0 10px;
-					text-align: center;
+						.item-precio-unitario-valor{
+							font-size: 12px;
+						}
+					}
+				}
+				.item-totales{
+
+					label{
+						color: #373737;
+						font-size: 13px;
+					}
+
+					.item-cantidad{
+						font-size: 13px;
+						width: 25px;
+						border: 1px solid #C0C0C0;
+						padding: 5px;
+						background-color: #F8F8F8;
+					}
+
+					.item-precio-total-title{
+						font-size: 11px;
+						color: #373737;
+					}
+
+					.item-precio-total-valor{
+						color: $primary;
+						font-size: 15px;
+					}
 				}
 			}
+		}
+	}
 
-			.item-delete {
-				button {
-					margin-top: 0;
+	.carrito-totales{
+		height: 130px;
+		padding: 3% 3% 0;
+		background-color: white;
+
+		.carrito-totales-wrapper{
+			background-color: #F1F1F1;
+
+			.carrito-totales-div{
+				.carrito-totales-div-title{
+					font-size: 12px;
+				}
+				.carrito-totales-div-title, .carrito-totales-div-value{
+					padding: 3px 5px;
 				}
 			}
 		}

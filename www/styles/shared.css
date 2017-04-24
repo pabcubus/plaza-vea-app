@@ -1,11 +1,14 @@
 .md-button.pv-button-primary {
   color: white;
-  background-color: #D72525; }
+  background-color: #D72525 !important; }
   .md-button.pv-button-primary:not([disabled]):hover {
     background-color: #D72525; }
   .md-button.pv-button-primary[disabled] {
     color: #555;
     background-color: #ccc; }
+
+.pv-color-red {
+  color: #D72525; }
 
 .pv-background-primary {
   background-color: #D72525; }

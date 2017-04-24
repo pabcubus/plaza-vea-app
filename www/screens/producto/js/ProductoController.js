@@ -1,10 +1,11 @@
 app.controller('ProductoController', function($state, $stateParams, ProductoService, CarritoService){
 	var vm = this;
 
-	vm.ean			= $stateParams.ean;
-	vm.producto		= {};
+	vm.ean						= $stateParams.ean;
+	vm.producto					= {};
 
-	vm.addProducto	= addProducto;
+	vm.addProducto				= addProducto;
+	vm.changeCantidadProducto	= changeCantidadProducto;
 
 	init();
 
@@ -13,20 +14,21 @@ app.controller('ProductoController', function($state, $stateParams, ProductoServ
 		var codigoproducto 		= vm.ean.substring(2, 7);
 		var peso 				= vm.ean.substring(7, 12);
 		var codigoverificacion 	= vm.ean.substring(vm.ean.length - 1);
-		var eanToSeach			= '';
+		var eanToSearch			= '';
 
 		if (codigoinicial == '02') {
-			eanToSeach = codigoinicial + codigoproducto + 'xxxxx';
+			eanToSearch = codigoinicial + codigoproducto + 'xxxxx';
 		} else {
-			eanToSeach = vm.ean;
+			eanToSearch = vm.ean;
 		}
 
-		ProductoService.getProduct(eanToSeach)
+		ProductoService.getProduct(eanToSearch)
 			.then(function(producto){
 				vm.producto				= angular.copy(producto);
 				vm.producto.ean			= codigoinicial + codigoproducto + peso + (codigoinicial == '02' ? producto.ean.substring(12, 13) : codigoverificacion);
 				vm.producto.pesable		= codigoinicial == '02' ? true : false;
 				vm.producto.cantidad	= codigoinicial == '02' ? parseInt(peso) : vm.producto.cantidad;
+				vm.producto.total		= Math.round((vm.producto.cantidad * vm.producto.precio) * 100) / 100;
 			})
 			.catch(function(data){
 				$state.go('bienvenido');
@@ -37,5 +39,9 @@ app.controller('ProductoController', function($state, $stateParams, ProductoServ
 	function addProducto(){
 		CarritoService.addProducto(angular.copy(vm.producto));
 		$state.go('carrito');
+	}
+
+	function changeCantidadProducto(){
+		vm.producto.total = Math.round((vm.producto.cantidad * vm.producto.precio) * 100) / 100;
 	}
 });

@@ -22,16 +22,11 @@ app.controller('BottomBarController', function($rootScope, $state, CarritoServic
 				});
 			},
 			function(error) {
-				navigator.notification.alert(
-					'Error escaneando producto',
-					null,
-					'Alerta',
-					'OK'
-				);
-			}, {
+			},
+			{
 				preferFrontCamera: false, // iOS and Android
 				torchOn: false, // Android, launch with the torch switched on (if available)
-				showFlipCameraButton: true, // iOS and Android
+				showFlipCameraButton: false, // iOS and Android
 				showTorchButton: true, // iOS and Android
 				prompt: "", // Android
 				resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500

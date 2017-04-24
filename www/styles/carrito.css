@@ -1,33 +1,60 @@
-.carrito {
-  padding: 5% 0; }
-  .carrito .carrito-control {
-    max-height: 80px; }
-    .carrito .carrito-control .comprar-btn {
-      margin: 0 auto 20px;
-      width: 60%;
-      display: block; }
-  .carrito .carrito-list {
-    overflow: auto;
-    padding: 10px 0 70px;
-    background: white;
-    -webkit-box-shadow: 0 0 26px 3px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0 0 26px 3px rgba(0, 0, 0, 0.75); }
+.carrito .carrito-control {
+  padding: 15px; }
+  .carrito .carrito-control .comprar-btn {
+    margin: 0 auto;
+    width: 60%;
+    display: block; }
+
+.carrito .carrito-list {
+  overflow: auto;
+  padding: 10px 0 0;
+  background-color: white; }
+  .carrito .carrito-list .carrito-list-item {
+    padding: 0 0 5px;
+    margin: 0 10px 8px;
+    border-bottom: 1px solid #E0E0E0; }
     .carrito .carrito-list .carrito-list-item .item-image img {
       height: 60px; }
-    .carrito .carrito-list .carrito-list-item .item-name {
-      margin: 0;
-      padding: 15px 0 0;
-      overflow: hidden;
-      line-height: 20px;
-      height: 55px; }
-    .carrito .carrito-list .carrito-list-item .item-qtty {
-      padding-top: 15px; }
-      .carrito .carrito-list .carrito-list-item .item-qtty input {
-        width: 50px;
-        padding: 5px 2px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin: 0 0 0 10px;
-        text-align: center; }
-    .carrito .carrito-list .carrito-list-item .item-delete button {
-      margin-top: 0; }
+    .carrito .carrito-list .carrito-list-item .item-description {
+      position: relative; }
+      .carrito .carrito-list .carrito-list-item .item-description .item-btn-delete {
+        position: absolute;
+        right: 0;
+        top: 0; }
+      .carrito .carrito-list .carrito-list-item .item-description .item-name {
+        margin: 0;
+        width: 80%;
+        padding-bottom: 5px;
+        min-height: 25px; }
+      .carrito .carrito-list .carrito-list-item .item-description .item-precio .item-precio-unitario {
+        color: #8E8E8E; }
+        .carrito .carrito-list .carrito-list-item .item-description .item-precio .item-precio-unitario .item-precio-unitario-title {
+          font-size: 11px; }
+        .carrito .carrito-list .carrito-list-item .item-description .item-precio .item-precio-unitario .item-precio-unitario-valor {
+          font-size: 12px; }
+      .carrito .carrito-list .carrito-list-item .item-description .item-totales label {
+        color: #373737;
+        font-size: 13px; }
+      .carrito .carrito-list .carrito-list-item .item-description .item-totales .item-cantidad {
+        font-size: 13px;
+        width: 25px;
+        border: 1px solid #C0C0C0;
+        padding: 5px;
+        background-color: #F8F8F8; }
+      .carrito .carrito-list .carrito-list-item .item-description .item-totales .item-precio-total-title {
+        font-size: 11px;
+        color: #373737; }
+      .carrito .carrito-list .carrito-list-item .item-description .item-totales .item-precio-total-valor {
+        color: #D72525;
+        font-size: 15px; }
+
+.carrito .carrito-totales {
+  height: 130px;
+  padding: 3% 3% 0;
+  background-color: white; }
+  .carrito .carrito-totales .carrito-totales-wrapper {
+    background-color: #F1F1F1; }
+    .carrito .carrito-totales .carrito-totales-wrapper .carrito-totales-div .carrito-totales-div-title {
+      font-size: 12px; }
+    .carrito .carrito-totales .carrito-totales-wrapper .carrito-totales-div .carrito-totales-div-title, .carrito .carrito-totales .carrito-totales-wrapper .carrito-totales-div .carrito-totales-div-value {
+      padding: 3px 5px; }

@@ -10,10 +10,10 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.bluewareinc.PlazaVeaApp"
         },
-        "phonegap-plugin-barcodescanner": {
+        "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.bluewareinc.PlazaVeaApp"
         },
-        "cordova-plugin-dialogs": {
+        "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "com.bluewareinc.PlazaVeaApp"
         }
     },

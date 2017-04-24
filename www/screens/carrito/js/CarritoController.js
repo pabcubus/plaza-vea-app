@@ -1,21 +1,30 @@
 app.controller('CarritoController', function($timeout, $state, lodash, SessionService, CarritoService, DataService){
 	var vm = this;
 
-	vm.currentProducto	= {};
-	vm.carrito = [];
+	vm.currentProducto		= {};
+	vm.carrito				= [];
+	vm.carritoTotal			= 0;
 
-	vm.removeProducto	= removeProducto;
-	vm.terminarCompra	= terminarCompra;
+	vm.removeProducto			= removeProducto;
+	vm.terminarCompra			= terminarCompra;
+	vm.changeCantidadProducto	= changeCantidadProducto;
 
 	init();
 
 	function init(){
-		vm.carrito = CarritoService.carrito;
+		vm.carrito		= CarritoService.carrito;
+		vm.carritoTotal	= CarritoService.carritoTotal;
 	}
 
 	function removeProducto(producto){
 		CarritoService.removeProducto(angular.copy(producto));
 		vm.carrito = CarritoService.carrito;
+	}
+
+	function changeCantidadProducto(producto){
+		CarritoService.changeCantidadProducto(producto);
+		vm.carrito		= CarritoService.carrito;
+		vm.carritoTotal	= CarritoService.carritoTotal;
 	}
 
 	function terminarCompra(){

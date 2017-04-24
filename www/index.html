@@ -61,16 +61,20 @@
 		}
 	</script>
 
-	<link rel="stylesheet" href="styles/shared.css">
-	<link rel="stylesheet" href="styles/toolbar.css">
-	<link rel="stylesheet" href="styles/login.css">
-	<link rel="stylesheet" href="styles/bienvenido.css">
-	<link rel="stylesheet" href="styles/producto.css">
-	<link rel="stylesheet" href="styles/carrito.css">
-	<link rel="stylesheet" href="styles/compra_completada.css">
+	<link rel="stylesheet" href="styles/shared.min.css">
+	<link rel="stylesheet" href="styles/toolbar.min.css">
+	<link rel="stylesheet" href="styles/login.min.css">
+	<link rel="stylesheet" href="styles/bienvenido.min.css">
+	<link rel="stylesheet" href="styles/producto.min.css">
+	<link rel="stylesheet" href="styles/carrito.min.css">
+	<link rel="stylesheet" href="styles/compra_completada.min.css">
 </head>
 
-<body ng-app="demo" ng-controller="AppController as ac" ng-class="{'pv-background-login' : ac.currentPath.indexOf('login') != -1, 'pv-background-normal' : ac.currentPath.indexOf('login') == -1}" ng-cloak>
+<body
+	ng-app="demo"
+	ng-controller="AppController as ac"
+	ng-class="{'pv-background-login' : ac.currentPath.indexOf('login') != -1, 'pv-background-normal' : ac.currentPath.indexOf('login') == -1}"
+	ng-cloak>
 
 	<div layout="column" layout-fill>
 		<div ng-hide="ac.currentPath.indexOf('login') != -1 || ac.currentPath.indexOf('bienvenido') != -1">

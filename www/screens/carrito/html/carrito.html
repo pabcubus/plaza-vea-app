@@ -4,23 +4,69 @@
 			Comprar
 		</md-button>
 	</div>
-	<div class="carrito-list" flex="90">
+	<div class="carrito-list" flex>
 		<div class="carrito-list-item" layout="row" ng-repeat="producto in cc.carrito">
 			<div class="item-image" flex="20">
 				<img src="images/productos/{{producto.codigo}}.jpg">
 			</div>
-			<h4 class="item-name" flex="40">
-				{{producto.nombre}}
-			</h4>
-			<div class="item-qtty">
-				<input class="cantidad" ng-disabled="producto.pesable" ng-model="producto.cantidad" type="number"/>
-			</div>
-			<div class="item-delete" layout-align="center start" flex="20">
-				<md-button class="md-fab pv-button-primary" ng-click="cc.removeProducto(producto)">
+			<div class="item-description" flex="70">
+				<md-button class="item-btn-delete md-fab md-mini pv-button-primary" ng-click="cc.removeProducto(producto)">
 					<md-icon aria-label="menu" class="material-icons step">
 						close
 					</md-icon>
 				</md-button>
+
+				<h5 class="item-name">
+					{{producto.nombre}}
+				</h5>
+				<div class="item-precio" layout="row">
+					<div class="item-precio-unitario">
+						<div class="item-precio-unitario-title">
+							Precio Unitario:
+						</div>
+						<div class="item-precio-unitario-valor">
+							S/ {{producto.precio}}
+						</div>
+					</div>
+				</div>
+				<div class="item-totales" layout="row">
+					<div flex="50">
+						<label>Cantidad: </label>
+						<input
+							class="item-cantidad pv-text-center"
+							type="number"
+							ng-model="producto.cantidad"
+							ng-change="cc.changeCantidadProducto(producto)">
+					</div>
+					<div flex="50">
+						<div class="item-precio-total-title">
+							Precio Unitario:
+						</div>
+						<div class="item-precio-total-valor">
+							S/ {{producto.total}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="carrito-totales">
+		<div class="carrito-totales-wrapper" layout="row">
+			<div class="carrito-totales-div carrito-totales-productos" flex="50">
+				<div class="carrito-totales-div-title">
+					Estas comprando:
+				</div>
+				<div class="carrito-totales-div-value">
+					{{cc.carrito.length}} productos
+				</div>
+			</div>
+			<div class="carrito-totales-div carrito-totales-total pv-color-red" flex="50">
+				<div class="carrito-totales-div-title">
+					Total:
+				</div>
+				<div class="carrito-totales-div-value">
+					S/ {{cc.carritoTotal}}
+				</div>
 			</div>
 		</div>
 	</div>

@@ -7,13 +7,35 @@
 			<h3>
 				{{pc.producto.nombre}}
 			</h3>
-			<span ng-show="pc.producto.pesable">
-				Peso (gr):
-			</span>
-			<span ng-show="!pc.producto.pesable">
-				Cantidad:
-			</span>
-			<input class="cantidad" ng-disabled="pc.producto.pesable" ng-model="pc.producto.cantidad" type="number"/>
+			<div class="producto-precio" layout="row">
+				<div flex="60" class="producto-precio-unitario">
+					<label class="producto-precio-unitario-title">
+						Precio Unitario:
+					</label>
+					<label class="producto-precio-unitario-value">
+						S/ {{pc.producto.precio}}
+						<span ng-show="pc.producto.pesable" class="pesable">
+							x {{pc.producto.unidad}}
+						</span>
+					</label>
+				</div>
+				<div flex="40">
+					<label>
+						Cantidad:
+					</label>
+					<input
+						class="cantidad pv-text-center"
+						type="number"
+						ng-model="pc.producto.cantidad"
+						ng-change="pc.changeCantidadProducto()"
+						ng-disabled="pc.producto.pesable">
+				</div>
+			</div>
+
+			<div class="producto-total">
+				Precio total: <span>S/ {{pc.producto.total}}</span>
+			</div>
+
 			<md-button class="pv-button-primary agregar-btn" ng-click="pc.addProducto()">
 				Agregar
 			</md-button>
