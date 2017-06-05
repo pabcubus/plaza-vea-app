@@ -37,6 +37,7 @@ app.service('SessionService', function($q, lodash, DataService, HelperService){
 		//{"idCliente":"402200234"}
 		var deferred = $q.defer();
 
+		/*
 		var user = {
 			id : loginText,
 			nombre : 'Pablo',
@@ -48,8 +49,8 @@ app.service('SessionService', function($q, lodash, DataService, HelperService){
 		HelperService.storage.set(HelperService.constants.LOCALSTORAGE_USER_TAG, vm.user, true);
 
 		deferred.resolve(user);
+		*/
 
-		/*
 		if (lodash.isString(loginText)) {
 			var jsonRequest = {
 				"idCliente":loginText
@@ -60,12 +61,16 @@ app.service('SessionService', function($q, lodash, DataService, HelperService){
 					if (lodash.has(result.data, 'codError')){
 						deferred.reject(result.data);
 					} else {
-						var user			= {};
 						var nombres			= result.nomCliente.replace(',', '').split(' ');
-						user.nombre			= nombres[0];
-						user.nombreCompleto	= result.nomCliente;
+						var user = {
+							id : loginText,
+							nombre : lodash.isString(nombres[0]) ? nombres[0] : 'Usuario',
+							nombreCompleto : result.nomCliente
+						};
 
+						vm.logedIn = true;
 						vm.user	= user;
+						HelperService.storage.set(HelperService.constants.LOCALSTORAGE_USER_TAG, vm.user, true);
 
 						deferred.resolve(user);
 					}
@@ -74,7 +79,6 @@ app.service('SessionService', function($q, lodash, DataService, HelperService){
 					deferred.reject(data);
 				});
 		}
-		*/
 
 		return deferred.promise;
 	}

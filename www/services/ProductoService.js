@@ -1,6 +1,7 @@
 app.service('ProductoService', function($q, lodash, DataService){
 	var vm = this;
 
+	/*
 	vm.products = [
 		{codigo:20100019, 	ean:'7750182000796', nombre:'Gaseosa COCA COLA Botella 2.25L', precio:5.6, unidad:'UN'},
 		{codigo:24082, 		ean:'7751158327510', nombre:'Conserva FLORIDA Filete de atún Lata 170Gr', precio:5.99, unidad:'UN'},
@@ -22,6 +23,7 @@ app.service('ProductoService', function($q, lodash, DataService){
 		{codigo:48640, 		ean:'0202101xxxxx2', nombre:'Naranja de jugo Precio x Kg (4 unid aprox = 1kg)', precio:2.29, unidad:'KG'},
 		{codigo:20056137, 	ean:'0216680xxxxx5', nombre:'Mandarina Chiqui Precio x Kg (7 unid aprox = 1kg)', precio:4.49, unidad:'KG'}
 	];
+	*/
 
 	vm.getProduct = getProduct;
 
