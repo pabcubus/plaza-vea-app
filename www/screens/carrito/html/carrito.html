@@ -7,7 +7,7 @@
 	<div class="carrito-list" flex>
 		<div class="carrito-list-item" layout="row" ng-repeat="producto in cc.carrito">
 			<div class="item-image" flex="20">
-				<img src="images/productos/{{producto.codigo}}.jpg">
+				<img data-ng-src="data:image/jpeg;base64,{{producto.image}}">
 			</div>
 			<div class="item-description" flex="70">
 				<md-button class="item-btn-delete md-fab md-mini pv-button-primary" ng-click="cc.removeProducto(producto)">
@@ -37,7 +37,7 @@
 							type="number"
 							ng-model="producto.cantidad"
 							ng-disabled="producto.pesable"
-							ng-change="cc.changeCantidadProducto(producto)">
+							ng-change="cc.changeCantidadProducto()">
 					</div>
 					<div flex="50">
 						<div class="item-precio-total-title">

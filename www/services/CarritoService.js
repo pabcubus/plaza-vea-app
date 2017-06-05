@@ -1,36 +1,23 @@
-app.service('CarritoService', function($q, lodash){
+app.service('CarritoService', function($q, lodash, DataService){
 	var vm = this;
 
 	vm.carrito = [];
-	/*
-	vm.carrito = [
-		{total: 22, cantidad: 2, pesable: false, codigo:20100019, 	ean:'7750182000796', nombre:'Gaseosa COCA COLA Botella 2.25L', precio:5.6, unidad:'UN'},
-		{total: 22, cantidad: 2, pesable: false, codigo:24082, 		ean:'7751158327510', nombre:'Conserva FLORIDA Filete de atún Lata 170Gr', precio:5.99, unidad:'UN'},
-		{total: 22, cantidad: 2, pesable: false, codigo:105611, 	ean:'7750885002677', nombre:'Galletas COSTA Soda light clásica Paquete 6Un', precio:2.55, unidad:'UN'},
-		{total: 22, cantidad: 2, pesable: false, codigo:20112038, 	ean:'7500435111416', nombre:'Detergente en polvo ARIEL Con downy Bolsa 4Kg', precio:41.9, unidad:'UN'},
-		{total: 22, cantidad: 2, pesable: false, codigo:20114017, 	ean:'2200000039422', nombre:'Yogurt BELL\'S Bebible fresa Botella 1Kg', precio:4.49, unidad:'UN'},
-		{total: 22, cantidad: 2, pesable: false, codigo:25423, 		ean:'7750151003902', nombre:'Mantequilla LAIVE Con sal Barra 200Gr', precio:5.99, unidad:'UN'},
-		{total: 22, cantidad: 2, pesable: false, codigo:20021304, 	ean:'7759185003087', nombre:'Papel higiénico de doble hoja ELITE Económico Paquete 24Un', precio:15.49, unidad:'UN'},
-		{total: 22, cantidad: 2, pesable: false, codigo:2294, 		ean:'7750020652903', nombre:'Huevos BELL\'S Pardos de gallina Bandeja 15Un', precio:4.99, unidad:'UN'},
-		{total: 22, cantidad: 2, pesable: false, codigo:20093492, 	ean:'7501058617453', nombre:'Cereal NESTLE CORN FLAKES Caja 510Gr', precio:12.99, unidad:'UN'},
-		{total: 22, cantidad: 2, pesable: false, codigo:993908, 	ean:'0000000015790', nombre:'Choclo entero Un', precio:1.99, unidad:'UN'},
-		{total: 22, cantidad: 2, pesable: false, codigo:21180, 		ean:'7751584000223', nombre:'Chocolate 2 CERRITOS Con grajeas confitadas Bolsa 125Gr', precio:7.89, unidad:'UN'}
-	];
-	*/
+
 	vm.carritoTotal				= 0;
 
 	vm.addProducto				= addProducto;
 	vm.removeProducto			= removeProducto;
 	vm.clearCarrito				= clearCarrito;
-	vm.changeCantidadProducto	= changeCantidadProducto;
+	vm.calcularTotalCarrito		= calcularTotalCarrito;
+	vm.terminarCompra			= terminarCompra;
 
 	function addProducto(productoObject){
 		var found = false;
 
 		lodash.forEach(vm.carrito, function(prd){
-			if(prd.codigo == productoObject.codigo){
+			if(prd.ean == productoObject.ean){
 				found = true;
-				prd.cantidad += productoObject.cantidad;
+				prd.cantidad = prd.pesable ? prd.cantidad : (prd.cantidad + productoObject.cantidad);
 			}
 		});
 
@@ -41,14 +28,9 @@ app.service('CarritoService', function($q, lodash){
 		calcularTotalCarrito();
 	}
 
-	function changeCantidadProducto(productoObject){
-		productoObject.total = Math.round((productoObject.precio * productoObject.cantidad) * 100) / 100;
-		calcularTotalCarrito();
-	}
-
 	function removeProducto(productoObject){
 		vm.carrito.forEach(function(prd, index){
-			if (prd.codigo == productoObject.codigo){
+			if (prd.ean == productoObject.ean){
 				vm.carrito.splice(index, 1);
 			}
 		});
@@ -66,9 +48,54 @@ app.service('CarritoService', function($q, lodash){
 		vm.carritoTotal = 0;
 
 		lodash.forEach(vm.carrito, function(prd){
-			vm.carritoTotal += (prd.precio * prd.cantidad);
+			var prodTotal	= lodash.round((prd.precio * prd.cantidad), 2);
+			prd.total		= prodTotal;
+			vm.carritoTotal	+= prodTotal;
 		});
 
-		vm.carritoTotal = Math.round(vm.carritoTotal * 100) / 100;
+		vm.carritoTotal = lodash.round(vm.carritoTotal, 2);
+	}
+
+	function terminarCompra(dni, carrito){
+		var deferred = $q.defer();
+
+		var jsonRequest = {
+			"idTienda": "195",
+			"idCliente": "40220040",
+			"items": []
+		};
+
+		lodash.forEach(carrito, function(prd){
+			jsonRequest.items.push(
+				{
+					"barcode": prd.ean,
+					"qty": prd.cantidad,
+					"price": prd.total ? prd.total : 1
+				}
+			);
+		});
+
+		DataService.performOperation('http://10.20.12.36:7080/selfpicking/RegistrarPedido', 'POST', jsonRequest)
+			.then(function(result){
+				deferred.resolve(result.data);
+			})
+			.catch(function(data){
+				deferred.reject(data);
+			});
+
+		return deferred.promise;
 	}
 });
+
+
+/*
+http://10.20.12.36:7080/selfpicking/ConsultarProducto
+
+{"idtienda":"195","barcode":"7790470081854"}
+
+
+
+http://10.20.12.36:7080/selfpicking/RegistrarPedido
+
+{"idTienda":"195","idCliente":"40220040","items":[{"barcode":"7751158327510","qty": 1,"price": 3.3},{"barcode":"7750151003902","qty": 2,"price": 4.4}]}
+*/

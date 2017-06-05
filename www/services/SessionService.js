@@ -1,7 +1,9 @@
-app.service('SessionService', function($q, lodash){
+app.service('SessionService', function($q, lodash, DataService, HelperService){
 	var vm = this;
 
 	vm.user = {};
+	vm.logedIn = false;
+	/*
 	vm.users = [
 		{dni:9298312, nombre:'CARLOS ALBERTO MARTIN', apellido:'ARMIJO', correo:'carlos.flores@spsa.com.pe'},
 		{dni:7909326, nombre:'ADELBERTO DOMINIK', apellido:'CARO', correo:'Adelberto.Muller@spsa.com.pe'},
@@ -24,27 +26,71 @@ app.service('SessionService', function($q, lodash){
 		{dni:46818879, nombre:'EDUARDO', apellido:'CUSIRRAMOS', correo:'jleon@spsa.com.pe'},
 		{dni:1234, nombre:'EDUARDO', apellido:'CUSIRRAMOS', correo:'pablo@hotmail.com'}
 	];
+	*/
 
 	vm.login = login;
+	vm.logout = logout;
+
+	init();
 
 	function login(loginText){
+		//{"idCliente":"402200234"}
 		var deferred = $q.defer();
 
-		var user = lodash.find(vm.users, function(user){
-			return user.dni == loginText || user.correo.toLowerCase() == loginText.toLowerCase();
-		});
+		var user = {
+			id : loginText,
+			nombre : 'Pablo',
+			nombreCompleto : 'Pablo Bassil'
+		};
 
-		if (lodash.isObject(user)) {
-			var nombres = user.nombre.split(' ');
-			user.nombre = nombres[0];
+		vm.logedIn = true;
+		vm.user	= user;
+		HelperService.storage.set(HelperService.constants.LOCALSTORAGE_USER_TAG, vm.user, true);
 
-			vm.user = user;
+		deferred.resolve(user);
 
-			deferred.resolve(user);
-		} else {
-			deferred.reject({message: 'Usuario no registrado'});
+		/*
+		if (lodash.isString(loginText)) {
+			var jsonRequest = {
+				"idCliente":loginText
+			};
+
+			DataService.performOperation('http://10.20.12.36:7080/selfpicking/Login', 'POST', jsonRequest)
+				.then(function(result){
+					if (lodash.has(result.data, 'codError')){
+						deferred.reject(result.data);
+					} else {
+						var user			= {};
+						var nombres			= result.nomCliente.replace(',', '').split(' ');
+						user.nombre			= nombres[0];
+						user.nombreCompleto	= result.nomCliente;
+
+						vm.user	= user;
+
+						deferred.resolve(user);
+					}
+				})
+				.catch(function(data){
+					deferred.reject(data);
+				});
 		}
+		*/
 
 		return deferred.promise;
+	}
+
+	function logout(){
+		vm.user = {};
+		vm.logedIn = false;
+
+		HelperService.storage.remove(HelperService.constants.LOCALSTORAGE_USER_TAG);
+	}
+
+	function init(){
+		var user = HelperService.storage.get(HelperService.constants.LOCALSTORAGE_USER_TAG, true);
+		if (lodash.isObject(user)) {
+			vm.user = (user ? user : {});
+			vm.logedIn = true;
+		}
 	}
 });

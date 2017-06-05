@@ -6,15 +6,20 @@
 			<md-icon aria-label="menu" class="material-icons step">
 				room
 			</md-icon>
-			PlazaVea Miraflores
+			Plaza Vea San Borja
 		</a>
 	</div>
 
-	<form name="loginForm" ng-submit="ac.login(loginForm)" novalidate>
+	<form name="loginForm" ng-submit="ac.login(loginForm)">
 		<md-whiteframe class="md-whiteframe-1dp login-panel" layout="column" layout-align="center center">
 			<md-input-container class="md-block dni-wrapper" flex>
 				<label>Ingrese su DNI o email</label>
-				<input name="id" type="text" ng-model="ac.loginText" ng-minlength="3" required>
+				<input
+					name="id"
+					type="text"
+					ng-model="ac.loginText"
+					ng-minlength="3"
+					required>
 			</md-input-container>
 
 			<md-button type="submit" class="pv-button-primary" flex>

@@ -1,4 +1,4 @@
-app.service('ProductoService', function($q, lodash){
+app.service('ProductoService', function($q, lodash, DataService){
 	var vm = this;
 
 	vm.products = [
@@ -28,16 +28,39 @@ app.service('ProductoService', function($q, lodash){
 	function getProduct(ean){
 		var deferred = $q.defer();
 
-		var producto = lodash.find(vm.products, function(prd){
-			return prd.ean.indexOf(ean) != -1;
-		});
+		if (lodash.isString(ean)) {
+			var jsonRequest = {
+				"idtienda":"195",
+				"barcode":ean
+			};
 
-		if (lodash.isObject(producto)) {
-			producto.cantidad	= 1;
-			deferred.resolve(producto);
-		} else {
-			deferred.reject({message: 'Producto no registrado'});
+			DataService.performOperation('http://10.20.12.36:7080/selfpicking/ConsultarProducto', 'POST', jsonRequest)
+				.then(function(result){
+					if (lodash.has(result.data, 'codError')){
+						deferred.reject(result.data);
+					} else {
+						var producto			= result.data;
+						var codigoinicial 		= ean.substring(0, 2);
+						var cantidad 			= codigoinicial == '02' ? (parseInt(ean.substring(7, 12)) / 1000) : 1;
+
+						var productoObject = {
+							ean:		ean,
+							nombre:		producto.nomProducto,
+							unidad:		producto.unidadMedida,
+							pesable:	codigoinicial == '02' ? true : false,
+							precio:		producto.price,
+							cantidad:	cantidad,
+							image:		producto.image,
+							total:		lodash.round((cantidad * producto.price), 2)
+						};
+						deferred.resolve(productoObject);
+					}
+				})
+				.catch(function(data){
+					deferred.reject(data);
+				});
 		}
+
 
 		return deferred.promise;
 	}

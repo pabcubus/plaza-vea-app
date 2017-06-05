@@ -1,4 +1,4 @@
-app.controller('ProductoController', function($state, $stateParams, ProductoService, CarritoService){
+app.controller('ProductoController', function($timeout, $state, $stateParams, lodash, ProductoService, CarritoService){
 	var vm = this;
 
 	vm.ean						= $stateParams.ean;
@@ -10,6 +10,23 @@ app.controller('ProductoController', function($state, $stateParams, ProductoServ
 	init();
 
 	function init(){
+		ProductoService.getProduct(vm.ean)
+			.then(function(producto){
+				vm.producto				= angular.copy(producto);
+			})
+			.catch(function(data){
+				$state.go(CarritoService.carrito.length > 0 ? 'carrito' : 'bienvenido');
+				$timeout(function(){
+					navigator.notification.alert(
+						lodash.has(data, 'codError') ? data.messageError : 'Se presento un problema de conexión, y no se pudo leer el producto',
+						null,
+						'Alerta',
+						'OK'
+					);
+				}, 500);
+			});
+
+		/*
 		var codigoinicial 		= vm.ean.substring(0, 2);
 		var codigoproducto 		= vm.ean.substring(2, 7);
 		var peso 				= vm.ean.substring(7, 12);
@@ -34,6 +51,7 @@ app.controller('ProductoController', function($state, $stateParams, ProductoServ
 				$state.go('bienvenido');
 				alert(data.message);
 			});
+			*/
 	}
 
 	function addProducto(){

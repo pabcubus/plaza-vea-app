@@ -7,7 +7,7 @@ app.controller('AppController', function($scope, $rootScope, $location, $mdSiden
 	vm.user				= {};
 
 	vm.login			= login;
-	vm.logout			= login;
+	vm.logout			= logout;
 	vm.toggleOpciones	= toggleOpciones;
 	vm.toggleCarrito	= toggleCarrito;
 
@@ -19,6 +19,11 @@ app.controller('AppController', function($scope, $rootScope, $location, $mdSiden
 			vm.currentPath = $location.path();
 		}
 	);
+
+	$scope.$on('SET_SESSION_DATA', function(event, args) {
+		vm.user		= args.user;
+		vm.logedIn	= args.logedIn;
+	});
 
 	function login(form){
 		if (!form.$valid) {
@@ -36,12 +41,21 @@ app.controller('AppController', function($scope, $rootScope, $location, $mdSiden
 				vm.logedIn = false;
 				$location.path('/login');
 
-				alert(data.message);
+				navigator.notification.alert(
+					lodash.has(data, 'codError') ? data.messageError : 'Se presento un problema de conexión. Intente mas tarde.',
+					null,
+					'Alerta',
+					'OK'
+				);
 			});
 	}
 
 	function logout(){
-		vm.logedIn = false;
+		SessionService.logout();
+
+		vm.user		= {};
+		vm.logedIn	= false;
+
 		$location.path('/login');
 	}
 

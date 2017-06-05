@@ -1,4 +1,4 @@
-app.controller('CarritoController', function($timeout, $state, lodash, SessionService, CarritoService, DataService){
+app.controller('CarritoController', function($timeout, $state, lodash, SessionService, CarritoService){
 	var vm = this;
 
 	vm.currentProducto		= {};
@@ -22,8 +22,8 @@ app.controller('CarritoController', function($timeout, $state, lodash, SessionSe
 		vm.carritoTotal	= CarritoService.carritoTotal;
 	}
 
-	function changeCantidadProducto(producto){
-		CarritoService.changeCantidadProducto(producto);
+	function changeCantidadProducto(){
+		CarritoService.calcularTotalCarrito();
 		vm.carrito		= CarritoService.carrito;
 		vm.carritoTotal	= CarritoService.carritoTotal;
 	}
@@ -31,32 +31,16 @@ app.controller('CarritoController', function($timeout, $state, lodash, SessionSe
 	function terminarCompra(){
 		var user	= angular.copy(SessionService.user);
 
-		var jsonRequest = {
-			idTienda: 'P195',
-			idCliente: '' + user.dni,
-			emailCliente: user.correo,
-			items: []
-		};
-
-		lodash.forEach(vm.carrito, function(prd){
-			jsonRequest.items.push(
-				{
-					barcode: prd.ean,
-					qty: prd.pesable ? Math.round(prd.cantidad * 1000) : prd.cantidad
-				}
-			);
-		});
-
-		DataService.performOperation('http://10.20.17.88:8282/api/Venta', 'POST', jsonRequest)
+		CarritoService.terminarCompra(user.dni, angular.copy(vm.carrito))
 			.then(function(result){
 				$state.go('compra_completada');
 
 				$timeout(function(){
-					JsBarcode("#barcode", result.data.idTransaction);
+					JsBarcode("#barcode", result.idTransaction);
 					CarritoService.clearCarrito();
 				}, 500);
 			})
-			.catch(function(data){
+			.catch(function(){
 				navigator.notification.alert(
 					'Se presento un problema de conexión, y no se pudo terminar el proceso de compra',
 					null,
@@ -64,6 +48,5 @@ app.controller('CarritoController', function($timeout, $state, lodash, SessionSe
 					'OK'
 				);
 			});
-
 	}
 });
