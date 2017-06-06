@@ -3,5 +3,5 @@
 /plugins
 /www/bower_components/
 /www/node_modules/
-/styles/.sass-cache
-/styles/*.css
+/www/styles/.sass-cache
+/www/styles/*.css
