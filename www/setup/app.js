@@ -1,6 +1,6 @@
 app.config(
 	function($urlRouterProvider, $stateProvider) {
-		$urlRouterProvider.otherwise('/bienvenido');
+		$urlRouterProvider.otherwise('/login');
 		$stateProvider
 			.state('login', {
 				url: '/login',
@@ -32,26 +32,5 @@ app.config(
 				controller: 'CompraCompletadaController',
 				controllerAs: 'ccc'
 			});
-	}
-);
-
-app.run(
-	function config($rootScope, $location, SessionService, HelperService) {
-		$rootScope.$on('$locationChangeSuccess', function(event, next, current) {
-			if (SessionService.logedIn) {
-				var path = $location.path();
-				var valid = HelperService.string.checkStringRegex(path, /^(\/(\w|\?|\&)+)+$/i);
-				var url = valid && (path != '/login') ? path : '/bienvenido';
-
-				$location.path(url);
-			} else {
-				$location.path('/login');
-			}
-
-			$rootScope.$broadcast('SET_SESSION_DATA', {
-				'user': SessionService.user,
-				'logedIn': SessionService.logedIn
-			});
-		});
 	}
 );

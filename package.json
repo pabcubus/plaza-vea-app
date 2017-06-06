@@ -1,0 +1,32 @@
+{
+    "name": "plaza-vea-app",
+    "version": "1.0.0",
+    "description": "Este es el repositorio para la demo de la app Plaza Vea.",
+    "main": "index.js",
+    "scripts": {
+        "run-complete-mac": "cd www && npm install && bower install && cd .. && cordova run android",
+        "build-complete-mac": "cd www && npm install && bower install && cd .. && cordova build android"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pabcubus/plaza-vea-app.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/pabcubus/plaza-vea-app/issues"
+    },
+    "homepage": "https://github.com/pabcubus/plaza-vea-app#readme",
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-dialogs": {},
+            "cordova-plugin-whitelist": {},
+            "phonegap-plugin-barcodescanner": {}
+        }
+    },
+    "dependencies": {
+        "cordova-plugin-dialogs": "1",
+        "cordova-plugin-whitelist": "1",
+        "phonegap-plugin-barcodescanner": "6"
+    }
+}

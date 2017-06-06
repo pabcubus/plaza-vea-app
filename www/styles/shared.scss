@@ -1,18 +1,16 @@
 @import 'config.scss';
 
-.md-button {
-	&.pv-button-primary {
-		color: white;
-		background-color: $primary !important;
+.pv-button-primary {
+	color: white;
+	background-color: $primary !important;
 
-		&:not([disabled]):hover {
-			background-color: $primary;
-		}
+	&:not([disabled]):hover {
+		background-color: $primary;
+	}
 
-		&[disabled] {
-			color: #555;
-			background-color: #ccc;
-		}
+	&[disabled] {
+		color: #555;
+		background-color: #ccc;
 	}
 }
 

@@ -12,8 +12,13 @@
         outline: 0; }
   .login .login-panel {
     background: white; }
+    .login .login-panel .login-form {
+      width: 80%; }
     .login .login-panel .dni-wrapper {
       width: 95%; }
-    .login .login-panel .md-button {
+    .login .login-panel .pv-button-primary {
+      border: none;
+      margin: 0 0 10px;
       width: 80%;
-      padding: 10px 0; }
+      padding: 15px 0;
+      border-radius: 5px; }

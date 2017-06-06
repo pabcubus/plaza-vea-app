@@ -61,11 +61,11 @@ app.service('SessionService', function($q, lodash, DataService, HelperService){
 					if (lodash.has(result.data, 'codError')){
 						deferred.reject(result.data);
 					} else {
-						var nombres			= result.nomCliente.replace(',', '').split(' ');
+						var nombres			= result.data.nomCliente.replace(',', '').split(' ');
 						var user = {
 							id : loginText,
 							nombre : lodash.isString(nombres[0]) ? nombres[0] : 'Usuario',
-							nombreCompleto : result.nomCliente
+							nombreCompleto : result.data.nomCliente
 						};
 
 						vm.logedIn = true;
@@ -78,6 +78,7 @@ app.service('SessionService', function($q, lodash, DataService, HelperService){
 				.catch(function(data){
 					deferred.reject(data);
 				});
+
 		}
 
 		return deferred.promise;

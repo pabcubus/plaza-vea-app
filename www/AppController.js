@@ -1,10 +1,21 @@
-app.controller('AppController', function($scope, $rootScope, $location, $mdSidenav, SessionService){
+app.controller('AppController', function(lodash, $scope, $rootScope, $location, $mdSidenav, SessionService){
 	var vm = this;
 
 	vm.currentPath		= '';
 	vm.loginText		= '';
 	vm.logedIn			= false;
 	vm.user				= {};
+	vm.loginTypes = [
+		{
+			name: 'DNI',
+			length: 8
+		},
+		{
+			name: 'CE',
+			length: 12
+		}
+	];
+	vm.selectedLoginType = vm.loginTypes[0];
 
 	vm.login			= login;
 	vm.logout			= logout;
@@ -25,9 +36,16 @@ app.controller('AppController', function($scope, $rootScope, $location, $mdSiden
 		vm.logedIn	= args.logedIn;
 	});
 
-	function login(form){
-		if (!form.$valid) {
-			alert('Revisa si faltan datos por llenar');
+	function login(){
+		vm.loginText = String(vm.loginText);
+
+		if (!lodash.isString(vm.loginText) || (vm.selectedLoginType.length != vm.loginText.length)) {
+			navigator.notification.alert(
+				'Revisa si faltan datos por llenar o si los datos son válidos',
+				null,
+				'Alerta',
+				'OK'
+			);
 			return false;
 		}
 
@@ -41,8 +59,9 @@ app.controller('AppController', function($scope, $rootScope, $location, $mdSiden
 				vm.logedIn = false;
 				$location.path('/login');
 
+				var message = lodash.has(data, 'codError') ? data.messageError : 'Se presento un problema de conexión. Intente mas tarde.';
 				navigator.notification.alert(
-					lodash.has(data, 'codError') ? data.messageError : 'Se presento un problema de conexión. Intente mas tarde.',
+					message,
 					null,
 					'Alerta',
 					'OK'

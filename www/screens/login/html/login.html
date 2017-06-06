@@ -10,21 +10,35 @@
 		</a>
 	</div>
 
-	<form name="loginForm" ng-submit="ac.login(loginForm)">
+	<form name="loginForm" ng-submit="ac.login()">
 		<md-whiteframe class="md-whiteframe-1dp login-panel" layout="column" layout-align="center center">
-			<md-input-container class="md-block dni-wrapper" flex>
-				<label>Ingrese su DNI o email</label>
-				<input
-					name="id"
-					type="text"
-					ng-model="ac.loginText"
-					ng-minlength="3"
-					required>
-			</md-input-container>
 
-			<md-button type="submit" class="pv-button-primary" flex>
+			<h3>
+				Iniciar Sesion
+			</h3>
+
+			<div class="login-form" layout="row" flex>
+				<md-input-container flex="30">
+					<md-select ng-model="ac.selectedLoginType">
+						<md-option ng-repeat="type in ac.loginTypes" ng-value="type">
+							{{type.name}}
+						</md-option>
+					</md-select>
+				</md-input-container>
+				<md-input-container flex>
+					<label>Nº de Documento</label>
+					<input
+						name="id"
+						type="number"
+						ng-model="ac.loginText"
+						ng-minlength="3"
+						required>
+				</md-input-container>
+			</div>
+
+			<button type="submit" class="pv-button-primary" flex>
 				Ingresar
-			</md-button>
+			</button>
 		</md-whiteframe>
 	</form>
 </div>
