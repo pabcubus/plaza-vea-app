@@ -1,32 +1,42 @@
 {
-    "name": "plaza-vea-app",
-    "version": "1.0.0",
-    "description": "Este es el repositorio para la demo de la app Plaza Vea.",
-    "main": "index.js",
-    "scripts": {
-        "run-complete-mac": "cd www && npm install && bower install && cd .. && cordova run android",
-        "build-complete-mac": "cd www && npm install && bower install && cd .. && cordova build android"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/pabcubus/plaza-vea-app.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/pabcubus/plaza-vea-app/issues"
-    },
-    "homepage": "https://github.com/pabcubus/plaza-vea-app#readme",
-    "cordova": {
-        "plugins": {
-            "cordova-plugin-dialogs": {},
-            "cordova-plugin-whitelist": {},
-            "phonegap-plugin-barcodescanner": {}
-        }
-    },
-    "dependencies": {
-        "cordova-plugin-dialogs": "1",
-        "cordova-plugin-whitelist": "1",
-        "phonegap-plugin-barcodescanner": "6"
-    }
+	"name": "plaza-vea-app",
+	"version": "1.0.0",
+	"description": "Este es el repositorio para la demo de la app Plaza Vea.",
+	"main": "index.js",
+	"scripts": {
+		"run-android-complete-mac": "cd www && npm install && bower install && cordova platform remove android ios && cordova platform add android ios && cd .. && cordova run android",
+		"run-ios-complete-mac": "cd www && npm install && bower install && cordova platform remove android ios && cordova platform add android ios && cd .. && cordova run ios",
+		"run-web-complete-mac": "cd www && npm install && bower install && grunt serve",
+		"build-android-complete-mac": "cd www && npm install && bower install && cordova platform remove android ios && cordova platform add android ios && cd .. && cordova build android",
+		"build-ios-complete-mac": "cd www && npm install && bower install && cordova platform remove android ios && cordova platform add android ios && cd .. && cordova build ios",
+
+		"run-android-complete-win": "cd www & npm install & bower install & cordova platform remove android ios & cordova platform add android ios & cd .. & cordova run android",
+		"run-ios-complete-win": "cd www & npm install & bower install & cordova platform remove android ios & cordova platform add android ios & cd .. & cordova run ios",
+		"run-web-complete-win": "cd www & npm install & bower install & grunt serve",
+		"build-android-complete-win": "cd www & npm install & bower install & cordova platform remove android ios & cordova platform add android ios & cd .. & cordova build android",
+		"build-ios-complete-win": "cd www & npm install & bower install & cordova platform remove android ios & cordova platform add android ios & cd .. & cordova build ios"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pabcubus/plaza-vea-app.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/pabcubus/plaza-vea-app/issues"
+	},
+	"homepage": "https://github.com/pabcubus/plaza-vea-app#readme",
+	"cordova": {
+		"plugins": {
+			"cordova-plugin-dialogs": {},
+			"cordova-plugin-whitelist": {},
+			"phonegap-plugin-barcodescanner": {}
+		},
+		"platforms": []
+	},
+	"dependencies": {
+		"cordova-plugin-dialogs": "1",
+		"cordova-plugin-whitelist": "1",
+		"phonegap-plugin-barcodescanner": "6"
+	}
 }
