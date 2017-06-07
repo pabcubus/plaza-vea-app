@@ -1,6 +1,10 @@
 <div class="carrito" layout="column" flex>
 	<div class="carrito-control">
-		<md-button class="pv-button-primary comprar-btn" ng-click="cc.terminarCompra()" ng-disabled="cc.carrito.length == 0">
+		<md-button
+			class="pv-button-primary comprar-btn"
+			ng-click="cc.terminarCompra()"
+			ng-disabled="cc.carrito.length == 0"
+			ng-class="{'comprar-btn-disabled' : (cc.carrito.length == 0)}">
 			Comprar
 		</md-button>
 	</div>

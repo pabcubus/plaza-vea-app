@@ -10,7 +10,7 @@
 		</a>
 	</div>
 
-	<form name="loginForm" ng-submit="ac.login()">
+	<form ng-submit="ac.login()">
 		<md-whiteframe class="md-whiteframe-1dp login-panel" layout="column" layout-align="center center">
 
 			<h3>
@@ -20,7 +20,7 @@
 			<div class="login-form" layout="row" flex>
 				<md-input-container flex="30">
 					<md-select ng-model="ac.selectedLoginType">
-						<md-option ng-repeat="type in ac.loginTypes" ng-value="type">
+						<md-option ng-repeat="type in ac.loginTypes" ng-value="type.name">
 							{{type.name}}
 						</md-option>
 					</md-select>
@@ -31,14 +31,15 @@
 						name="id"
 						type="number"
 						ng-model="ac.loginText"
-						ng-minlength="3"
-						required>
+						ng-maxlength="{{type.length}}"
+						ng-minlength="{{type.length}}"
+						required/>
 				</md-input-container>
 			</div>
 
-			<button type="submit" class="pv-button-primary" flex>
+			<md-button type="submit" class="pv-button-primary" flex>
 				Ingresar
-			</button>
+			</md-button>
 		</md-whiteframe>
 	</form>
 </div>

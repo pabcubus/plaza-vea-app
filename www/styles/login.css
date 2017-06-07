@@ -14,11 +14,13 @@
     background: white; }
     .login .login-panel .login-form {
       width: 80%; }
+      .login .login-panel .login-form md-input-container {
+        margin-bottom: 2px; }
     .login .login-panel .dni-wrapper {
       width: 95%; }
     .login .login-panel .pv-button-primary {
       border: none;
-      margin: 0 0 10px;
+      margin: 0 0 30px;
       width: 80%;
       padding: 15px 0;
       border-radius: 5px; }

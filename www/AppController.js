@@ -1,5 +1,8 @@
-app.controller('AppController', function(lodash, $scope, $rootScope, $location, $mdSidenav, SessionService){
+app.controller('AppController', function(lodash, $scope, $rootScope, $state, $mdSidenav, SessionService, HelperService){
 	var vm = this;
+
+	var d = new Date();
+	vm.id= d.getTime();
 
 	vm.currentPath		= '';
 	vm.loginText		= '';
@@ -24,17 +27,12 @@ app.controller('AppController', function(lodash, $scope, $rootScope, $location, 
 
 	$rootScope.$watch(
 		function(){
-			return $location.path();
+			return $state.current.name;
 		},
 		function(){
-			vm.currentPath = $location.path();
+			vm.currentPath = $state.current.name;
 		}
 	);
-
-	$scope.$on('SET_SESSION_DATA', function(event, args) {
-		vm.user		= args.user;
-		vm.logedIn	= args.logedIn;
-	});
 
 	function login(){
 		vm.loginText = String(vm.loginText);
@@ -53,11 +51,11 @@ app.controller('AppController', function(lodash, $scope, $rootScope, $location, 
 			.then(function(user){
 				vm.user		= user;
 				vm.logedIn	= true;
-				$location.path('/bienvenido');
+				$state.go('bienvenido');
 			})
 			.catch(function(data){
 				vm.logedIn = false;
-				$location.path('/login');
+				$state.go('login');
 
 				var message = lodash.has(data, 'codError') ? data.messageError : 'Se presento un problema de conexión. Intente mas tarde.';
 				navigator.notification.alert(
@@ -70,12 +68,12 @@ app.controller('AppController', function(lodash, $scope, $rootScope, $location, 
 	}
 
 	function logout(){
+		$state.go('login');
+
 		SessionService.logout();
 
 		vm.user		= {};
 		vm.logedIn	= false;
-
-		$location.path('/login');
 	}
 
 	function toggleOpciones() {
@@ -89,4 +87,19 @@ app.controller('AppController', function(lodash, $scope, $rootScope, $location, 
 			.toggle()
 			.then(function() {});
 	}
+
+	// $locationChangeSuccess
+	$scope.$on('$viewContentLoaded', function(){
+		if (SessionService.logedIn) {
+			var path = (lodash.isString($state.current.name) && $state.current.name.length > 0) ? $state.current.name : 'login';
+			var state = (path != 'login') ? path : 'bienvenido';
+
+			$state.go(state);
+		} else {
+			$state.go('login');
+		}
+
+		vm.user		= SessionService.user;
+		vm.logedIn	= SessionService.logedIn;
+	});
 });

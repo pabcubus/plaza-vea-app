@@ -2,7 +2,7 @@
   overflow: hidden; }
   .bienvenido .bienvenido-wrapper {
     position: relative; }
-    .bienvenido .bienvenido-wrapper img {
+    .bienvenido .bienvenido-wrapper .frutas-back {
       position: absolute;
       top: 30px;
       width: 120%;
@@ -11,3 +11,11 @@
       margin: 200px 0 5px; }
     .bienvenido .bienvenido-wrapper .bienvenido-saludo-parrafo {
       margin: 0; }
+  .bienvenido .arrow {
+    width: 10%;
+    bottom: 14%;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0; }

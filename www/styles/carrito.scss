@@ -8,6 +8,11 @@
 			margin: 0 auto;
 			width: 60%;
 			display: block;
+			color: white;
+
+			&.comprar-btn-disabled{
+				opacity: 0.5;
+			}
 		}
 	}
 

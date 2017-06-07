@@ -49,17 +49,28 @@
 	box-sizing: border-box;
 	z-index: 999;
 
+	.pv-footer-info{
+		margin-top: 5%;
+
+		.button-icon{
+			height: 35px;
+		}
+	}
+
 	.carrito-wrapper {
 		position: relative;
 
 		.badge {
 			position: absolute;
-			right: 35%;
+			right: 30%;
+			top: 5%;
 			margin: 0 auto;
 			padding: 1px 5px;
 			background: red;
-			color: white;
-			border-radius: 10px;
+			color: #fff;
+			border-radius: 50%;
+			font-size: 12px;
+			border: 2px solid white;
 		}
 	}
 
@@ -69,7 +80,7 @@
 
 		button {
 			position: absolute;
-			top: -35px;
+			top: -55px;
 			left: 0;
 			right: 0;
 			height: 56px;

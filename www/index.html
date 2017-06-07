@@ -13,12 +13,14 @@
 
 	<!-- Librerias de Material Angular y Angular para la UI -->
 	<link href="bower_components/angular-material/angular-material.min.css" rel="stylesheet">
+
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
 	<script src="bower_components/angular-aria/angular-aria.min.js"></script>
 	<script src="bower_components/angular-messages/angular-messages.min.js"></script>
 	<script src="bower_components/angular-material/angular-material.min.js"></script>
 
+	<!-- JS Barcode Plugin -->
 	<script src="bower_components/JsBarcode/dist/JsBarcode.all.min.js"></script>
 
 	<!-- NG Lodash -->
@@ -73,11 +75,11 @@
 <body
 	ng-app="demo"
 	ng-controller="AppController as ac"
-	ng-class="{'pv-background-login' : ac.currentPath.indexOf('login') != -1, 'pv-background-normal' : ac.currentPath.indexOf('login') == -1}"
+	ng-class="{'pv-background-login' : ac.currentPath == 'login', 'pv-background-normal' : ac.currentPath != 'login'}"
 	ng-cloak>
 
 	<div layout="column" layout-fill>
-		<div ng-hide="ac.currentPath.indexOf('login') != -1 || ac.currentPath.indexOf('bienvenido') != -1">
+		<div ng-hide="ac.currentPath == 'login' || ac.currentPath == 'bienvenido'">
 			<div ng-include="'modules/toolbar/html/toolbar.html'"></div>
 		</div>
 
@@ -86,7 +88,7 @@
 			</div>
 		</main>
 
-		<div ng-include="'modules/bottom_bar/html/bottom_bar.html'" ng-hide="ac.currentPath.indexOf('login') != -1"></div>
+		<div ng-include="'modules/bottom_bar/html/bottom_bar.html'" ng-hide="ac.currentPath == 'login'"></div>
 	</div>
 </body>
 

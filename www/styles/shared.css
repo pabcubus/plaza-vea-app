@@ -36,22 +36,29 @@
   width: 100%;
   box-sizing: border-box;
   z-index: 999; }
+  .pv-footer .pv-footer-info {
+    margin-top: 5%; }
+    .pv-footer .pv-footer-info .button-icon {
+      height: 35px; }
   .pv-footer .carrito-wrapper {
     position: relative; }
     .pv-footer .carrito-wrapper .badge {
       position: absolute;
-      right: 35%;
+      right: 30%;
+      top: 5%;
       margin: 0 auto;
       padding: 1px 5px;
       background: red;
-      color: white;
-      border-radius: 10px; }
+      color: #fff;
+      border-radius: 50%;
+      font-size: 12px;
+      border: 2px solid white; }
   .pv-footer .scanner-wrapper {
     text-align: center;
     position: relative; }
     .pv-footer .scanner-wrapper button {
       position: absolute;
-      top: -35px;
+      top: -55px;
       left: 0;
       right: 0;
       height: 56px;

@@ -1,24 +1,20 @@
 <footer class="pv-footer" ng-controller="BottomBarController as bbc">
-	<div layout="row">
-		<div flex class="carrito-wrapper">
-			<md-button ui-sref="carrito">
-				<md-icon aria-label="menu" class="material-icons step">
-					shopping_cart
-				</md-icon>
-			</md-button>
+	<div layout="row" layout-align="center center">
+		<div flex class="carrito-wrapper" layout="column" layout-align="center center">
+			<a class="pv-footer-info" ui-sref="carrito">
+				<img src="images/footer/footer_cart.png" class="button-icon" alt="Bookmark">
+			</a>
 			<span class="badge" ng-show="bbc.carritoItems > 0">
 				{{bbc.carritoItems}}
 			</span>
 		</div>
 		<div class="scanner-wrapper" flex>
-			<button ng-click="bbc.scan()">
+			<button ng-click="bbc.scan()"></button>
 		</div>
-		<div flex>
-			<md-button ng-click="ac.logout()">
-				<md-icon aria-label="menu" class="material-icons step">
-					exit_to_app
-				</md-icon>
-			</md-button>
+		<div flex layout="column" layout-align="center center">
+			<a class="pv-footer-info" ng-click="ac.logout()">
+				<img src="images/footer/footer_logout.png" class="button-icon" alt="Bookmark">
+			</a>
 		</div>
 	</div>
 </footer>

@@ -1,6 +1,6 @@
 app.config(
 	function($urlRouterProvider, $stateProvider) {
-		$urlRouterProvider.otherwise('/login');
+		$urlRouterProvider.otherwise('/bienvenido');
 		$stateProvider
 			.state('login', {
 				url: '/login',
@@ -34,3 +34,7 @@ app.config(
 			});
 	}
 );
+
+app.config(['$mdAriaProvider', function($mdAriaProvider) {
+	$mdAriaProvider.disableWarnings();
+}])

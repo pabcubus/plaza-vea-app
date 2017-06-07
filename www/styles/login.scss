@@ -24,6 +24,10 @@
 
 		.login-form {
 			width: 80%;
+
+			md-input-container{
+				margin-bottom: 2px;
+			}
 		}
 
 		.dni-wrapper {
@@ -32,7 +36,7 @@
 
 		.pv-button-primary {
 			border: none;
-			margin: 0 0 10px;
+			margin: 0 0 30px;
 			width: 80%;
 			padding: 15px 0;
 			border-radius: 5px;
