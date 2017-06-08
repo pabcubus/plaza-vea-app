@@ -1,11 +1,34 @@
-app.controller('AppController', function(lodash, $scope, $rootScope, $state, $mdSidenav, SessionService, HelperService){
+app.controller('AppController', function(lodash, $scope, $rootScope, $state, $timeout, $mdSidenav, SessionService){
 	var vm = this;
 
 	var d = new Date();
 	vm.id= d.getTime();
 
+	vm.backStates		= [
+		{
+			current: 'login',
+			next: null
+		},
+		{
+			current: 'carrito',
+			next: 'bienvenido'
+		},
+		{
+			current: 'producto',
+			next: 'carrito'
+		},
+		{
+			current: 'bienvenido',
+			next: null
+		},
+		{
+			current: 'compra_completada',
+			next: 'bienvenido'
+		}
+	]
+
+	vm.validatingLogin	= false;
 	vm.currentPath		= '';
-	vm.loginText		= '';
 	vm.logedIn			= false;
 	vm.user				= {};
 	vm.loginTypes = [
@@ -24,6 +47,8 @@ app.controller('AppController', function(lodash, $scope, $rootScope, $state, $md
 	vm.logout			= logout;
 	vm.toggleOpciones	= toggleOpciones;
 	vm.toggleCarrito	= toggleCarrito;
+	vm.getCurrentPage	= getCurrentPage;
+	vm.backBtnEvent		= backBtnEvent;
 
 	$rootScope.$watch(
 		function(){
@@ -34,46 +59,104 @@ app.controller('AppController', function(lodash, $scope, $rootScope, $state, $md
 		}
 	);
 
-	function login(){
-		vm.loginText = String(vm.loginText);
+	function getCurrentPage(){
+		return $state.current.name;
+	}
 
-		if (!lodash.isString(vm.loginText) || (vm.selectedLoginType.length != vm.loginText.length)) {
-			navigator.notification.alert(
-				'Revisa si faltan datos por llenar o si los datos son válidos',
-				null,
-				'Alerta',
-				'OK'
+	function backBtnEvent(){
+		var backState = lodash.find(vm.backStates, {current : $state.current.name});
+		if (lodash.isString(backState.next)) {
+			$state.go(backState.next);
+		} else {
+			navigator.notification.confirm(
+				'¿Quieres salir de la app?',
+				function(index){
+					if (index == 1) {
+						navigator.app.exitApp();
+					}
+				},
+				'Confirmar',
+				['Si', 'No']
 			);
-			return false;
 		}
+	}
 
-		SessionService.login(vm.loginText)
-			.then(function(user){
-				vm.user		= user;
-				vm.logedIn	= true;
-				$state.go('bienvenido');
-			})
-			.catch(function(data){
-				vm.logedIn = false;
-				$state.go('login');
+	function login(){
+		if(!vm.validatingLogin){
+			vm.validatingLogin = true;
 
-				var message = lodash.has(data, 'codError') ? data.messageError : 'Se presento un problema de conexión. Intente mas tarde.';
+			if (!lodash.isNumber(vm.loginText)) {
+				$timeout(function(){
+					vm.validatingLogin = false;
+				}, 1500);
+
 				navigator.notification.alert(
-					message,
+					'Identificación no válida.',
 					null,
 					'Alerta',
 					'OK'
 				);
-			});
+
+				return false;
+			}
+
+			var id = vm.loginText.toString();
+
+			if (vm.selectedLoginType.length != id.length) {
+				$timeout(function(){
+					vm.validatingLogin = false;
+				}, 1500);
+
+				navigator.notification.alert(
+					'El ' + vm.selectedLoginType.name + ' debe tener ' + vm.selectedLoginType.length + ' caracteres.',
+					null,
+					'Alerta',
+					'OK'
+				);
+
+				return false;
+			}
+
+			SessionService.login(id)
+				.then(function(user){
+					vm.user		= user;
+					vm.logedIn	= true;
+					$state.go('bienvenido');
+				})
+				.catch(function(data){
+					vm.logedIn = false;
+					$state.go('login');
+
+					var message = lodash.has(data, 'codError') ? data.messageError : 'Se presento un problema de conexión. Intente mas tarde.';
+					navigator.notification.alert(
+						message,
+						null,
+						'Alerta',
+						'OK'
+					);
+				})
+				.finally(function(){
+					vm.validatingLogin = false;
+				});
+		}
 	}
 
 	function logout(){
-		$state.go('login');
+		navigator.notification.confirm(
+			'¿Quieres cerrar tu sesión?',
+			function(index){
+				if (index == 1) {
+					$state.go('login');
 
-		SessionService.logout();
+					SessionService.logout();
 
-		vm.user		= {};
-		vm.logedIn	= false;
+					vm.user		= {};
+					vm.logedIn	= false;
+				}
+			},
+			'Confirmar',
+			['Si', 'No']
+		);
 	}
 
 	function toggleOpciones() {

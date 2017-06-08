@@ -32,7 +32,7 @@ app.service('ProductoService', function($q, lodash, DataService){
 
 		if (lodash.isString(ean)) {
 			var jsonRequest = {
-				"idtienda":"195",
+				"idTienda":"195",
 				"barcode":ean
 			};
 

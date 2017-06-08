@@ -14,9 +14,13 @@
 			width: 100%;
 			background-color: #DDDDDD;
 			top: 200px;
-			padding: 10px 10%;
+			padding: 0 20px;
 			box-sizing: border-box;
 			position: absolute;
+
+			.producto-title{
+				margin-top: 10px;
+			}
 
 			.producto-precio{
 				padding-bottom: 5px;
@@ -29,7 +33,7 @@
 						display: inline-block;
 					}
 					.producto-precio-unitario-value{
-						font-size: 20px;
+						font-size: 17px;
 
 						.pesable{
 							font-size: 11px;
@@ -37,12 +41,18 @@
 					}
 				}
 
-				.cantidad{
+				.cantidad-title{
+					line-height: 35px;
+				}
+
+				.cantidad-input{
 					font-size: 13px;
-					width: 25px;
-					border: 1px solid #C0C0C0;
-					padding: 5px;
-					background-color: #F8F8F8;
+					width: 40px;
+					border: 1px solid silver;
+					padding: 0 5px;
+					background-color: #f8f8f8;
+					height: 35px;
+					margin-left: 3px;
 				}
 			}
 

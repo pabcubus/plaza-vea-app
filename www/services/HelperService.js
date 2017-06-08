@@ -2,7 +2,8 @@ app.service('HelperService', function(lodash){
 	var vm = this;
 
 	vm.constants = {
-		LOCALSTORAGE_USER_TAG: 'plaza-vea-app-user'
+		LOCALSTORAGE_USER_TAG: 'plaza-vea-app-user',
+		LOCALSTORAGE_SHOPPING_CART_TAG: 'plaza-vea-app-shopping-cart'
 	};
 
 	vm.converters = {

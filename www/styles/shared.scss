@@ -1,5 +1,14 @@
 @import 'config.scss';
 
+@font-face {
+    font-family: Muli;
+    src: url('../fonts/Muli.ttf');
+}
+
+body {
+	font-family: 'Muli', sans-serif;
+}
+
 .pv-button-primary {
 	color: white;
 	background-color: $primary !important;

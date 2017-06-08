@@ -13,8 +13,8 @@
   padding: 10px 0 0;
   background-color: white; }
   .carrito .carrito-list .carrito-list-item {
-    padding: 0 0 5px;
-    margin: 0 10px 8px;
+    padding: 0 0 8px;
+    margin: 0 10px 3px;
     border-bottom: 1px solid #E0E0E0; }
     .carrito .carrito-list .carrito-list-item .item-image img {
       height: 60px; }
@@ -22,25 +22,28 @@
       position: relative; }
       .carrito .carrito-list .carrito-list-item .item-description .item-btn-delete {
         position: absolute;
-        right: 0;
-        top: 0; }
+        right: -30px;
+        top: 0;
+        width: 35px;
+        height: 20px;
+        line-height: 30px; }
       .carrito .carrito-list .carrito-list-item .item-description .item-name {
         margin: 0;
         width: 80%;
-        padding-bottom: 5px;
         min-height: 25px; }
       .carrito .carrito-list .carrito-list-item .item-description .item-precio .item-precio-unitario {
         color: #8E8E8E; }
         .carrito .carrito-list .carrito-list-item .item-description .item-precio .item-precio-unitario .item-precio-unitario-title {
-          font-size: 11px; }
+          font-size: 10px; }
         .carrito .carrito-list .carrito-list-item .item-description .item-precio .item-precio-unitario .item-precio-unitario-valor {
-          font-size: 12px;
-          font-weight: bold; }
+          font-size: 11px;
+          font-weight: bold;
+          line-height: 10px; }
           .carrito .carrito-list .carrito-list-item .item-description .item-precio .item-precio-unitario .item-precio-unitario-valor span {
             font-size: 11px; }
       .carrito .carrito-list .carrito-list-item .item-description .item-totales label {
         color: #373737;
-        font-size: 13px; }
+        font-size: 12px; }
       .carrito .carrito-list .carrito-list-item .item-description .item-totales .item-cantidad {
         font-size: 13px;
         width: 25px;
@@ -48,19 +51,28 @@
         padding: 5px;
         background-color: #F8F8F8; }
       .carrito .carrito-list .carrito-list-item .item-description .item-totales .item-precio-total-title {
-        font-size: 11px;
+        font-size: 10px;
         color: #373737; }
       .carrito .carrito-list .carrito-list-item .item-description .item-totales .item-precio-total-valor {
         color: #D72525;
-        font-size: 15px; }
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 10px; }
 
 .carrito .carrito-totales {
-  height: 130px;
+  height: 125px;
   padding: 3% 3% 0;
   background-color: white; }
   .carrito .carrito-totales .carrito-totales-wrapper {
-    background-color: #F1F1F1; }
+    background-color: #F1F1F1;
+    padding: 3px 0; }
+    .carrito .carrito-totales .carrito-totales-wrapper .carrito-totales-total {
+      padding: 0 0 0 10%; }
     .carrito .carrito-totales .carrito-totales-wrapper .carrito-totales-div .carrito-totales-div-title {
-      font-size: 12px; }
+      font-size: 13px; }
+    .carrito .carrito-totales .carrito-totales-wrapper .carrito-totales-div .carrito-totales-div-value {
+      font-size: 15px;
+      font-weight: bold;
+      line-height: 16px; }
     .carrito .carrito-totales .carrito-totales-wrapper .carrito-totales-div .carrito-totales-div-title, .carrito .carrito-totales .carrito-totales-wrapper .carrito-totales-div .carrito-totales-div-value {
-      padding: 3px 5px; }
+      padding: 0 5px; }

@@ -1,15 +1,21 @@
-app.service('CarritoService', function($q, lodash, DataService){
+app.service('CarritoService', function($q, lodash, HelperService, DataService){
 	var vm = this;
 
-	vm.carrito = [];
+	vm.carrito 				= [];
 
-	vm.carritoTotal				= 0;
+	vm.carritoTotal			= 0;
 
-	vm.addProducto				= addProducto;
-	vm.removeProducto			= removeProducto;
-	vm.clearCarrito				= clearCarrito;
-	vm.calcularTotalCarrito		= calcularTotalCarrito;
-	vm.terminarCompra			= terminarCompra;
+	vm.setCarrito			= setCarrito;
+	vm.addProducto			= addProducto;
+	vm.removeProducto		= removeProducto;
+	vm.clearCarrito			= clearCarrito;
+	vm.calcularTotalCarrito	= calcularTotalCarrito;
+	vm.terminarCompra		= terminarCompra;
+
+	function setCarrito(carrito){
+		vm.carrito = lodash.isArray(carrito) ? carrito : [];
+		calcularTotalCarrito();
+	};
 
 	function addProducto(productoObject){
 		var found = false;
@@ -54,6 +60,8 @@ app.service('CarritoService', function($q, lodash, DataService){
 		});
 
 		vm.carritoTotal = lodash.round(vm.carritoTotal, 2);
+
+		HelperService.storage.set(HelperService.constants.LOCALSTORAGE_SHOPPING_CART_TAG, vm.carrito, true);
 	}
 
 	function terminarCompra(dni, carrito){
@@ -78,6 +86,7 @@ app.service('CarritoService', function($q, lodash, DataService){
 		DataService.performOperation('http://10.20.12.36:7080/selfpicking/RegistrarPedido', 'POST', jsonRequest)
 			.then(function(result){
 				deferred.resolve(result.data);
+				HelperService.storage.remove(HelperService.constants.LOCALSTORAGE_SHOPPING_CART_TAG);
 			})
 			.catch(function(data){
 				deferred.reject(data);
@@ -86,16 +95,3 @@ app.service('CarritoService', function($q, lodash, DataService){
 		return deferred.promise;
 	}
 });
-
-
-/*
-http://10.20.12.36:7080/selfpicking/ConsultarProducto
-
-{"idtienda":"195","barcode":"7790470081854"}
-
-
-
-http://10.20.12.36:7080/selfpicking/RegistrarPedido
-
-{"idTienda":"195","idCliente":"40220040","items":[{"barcode":"7751158327510","qty": 1,"price": 3.3},{"barcode":"7750151003902","qty": 2,"price": 4.4}]}
-*/

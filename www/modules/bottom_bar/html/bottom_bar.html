@@ -3,10 +3,10 @@
 		<div flex class="carrito-wrapper" layout="column" layout-align="center center">
 			<a class="pv-footer-info" ui-sref="carrito">
 				<img src="images/footer/footer_cart.png" class="button-icon" alt="Bookmark">
+				<span class="badge" ng-show="bbc.carritoItems > 0">
+					{{bbc.carritoItems}}
+				</span>
 			</a>
-			<span class="badge" ng-show="bbc.carritoItems > 0">
-				{{bbc.carritoItems}}
-			</span>
 		</div>
 		<div class="scanner-wrapper" flex>
 			<button ng-click="bbc.scan()"></button>

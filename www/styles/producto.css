@@ -10,9 +10,11 @@
     width: 100%;
     background-color: #DDDDDD;
     top: 200px;
-    padding: 10px 10%;
+    padding: 0 20px;
     box-sizing: border-box;
     position: absolute; }
+    .producto .producto-wrapper .producto-legend .producto-title {
+      margin-top: 10px; }
     .producto .producto-wrapper .producto-legend .producto-precio {
       padding-bottom: 5px;
       border-bottom: 1px solid #ccc; }
@@ -21,15 +23,19 @@
         width: 50px;
         display: inline-block; }
       .producto .producto-wrapper .producto-legend .producto-precio .producto-precio-unitario .producto-precio-unitario-value {
-        font-size: 20px; }
+        font-size: 17px; }
         .producto .producto-wrapper .producto-legend .producto-precio .producto-precio-unitario .producto-precio-unitario-value .pesable {
           font-size: 11px; }
-      .producto .producto-wrapper .producto-legend .producto-precio .cantidad {
+      .producto .producto-wrapper .producto-legend .producto-precio .cantidad-title {
+        line-height: 35px; }
+      .producto .producto-wrapper .producto-legend .producto-precio .cantidad-input {
         font-size: 13px;
-        width: 25px;
-        border: 1px solid #C0C0C0;
-        padding: 5px;
-        background-color: #F8F8F8; }
+        width: 40px;
+        border: 1px solid silver;
+        padding: 0 5px;
+        background-color: #f8f8f8;
+        height: 35px;
+        margin-left: 3px; }
     .producto .producto-wrapper .producto-legend .producto-total {
       padding: 5px 0 0;
       text-align: center;

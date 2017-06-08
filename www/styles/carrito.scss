@@ -22,8 +22,8 @@
 		background-color: white;
 
 		.carrito-list-item {
-			padding: 0 0 5px;
-			margin: 0 10px 8px;
+			padding: 0 0 8px;
+			margin: 0 10px 3px;
 			border-bottom: 1px solid #E0E0E0;
 
 			.item-image {
@@ -36,13 +36,15 @@
 
 				.item-btn-delete{
 					position: absolute;
-					right: 0;
+					right: -30px;
 					top: 0;
+					width: 35px;
+					height: 20px;
+					line-height: 30px;
 				}
 				.item-name{
 					margin: 0;
 					width: 80%;
-					padding-bottom: 5px;
 					min-height: 25px;
 				}
 				.item-precio{
@@ -50,12 +52,13 @@
 						color: #8E8E8E;
 
 						.item-precio-unitario-title{
-							font-size: 11px;
+							font-size: 10px;
 						}
 
 						.item-precio-unitario-valor{
-							font-size: 12px;
+							font-size: 11px;
 							font-weight: bold;
+							line-height: 10px;
 
 							span{
 								font-size: 11px;
@@ -67,7 +70,7 @@
 
 					label{
 						color: #373737;
-						font-size: 13px;
+						font-size: 12px;
 					}
 
 					.item-cantidad{
@@ -79,13 +82,15 @@
 					}
 
 					.item-precio-total-title{
-						font-size: 11px;
+						font-size: 10px;
 						color: #373737;
 					}
 
 					.item-precio-total-valor{
 						color: $primary;
 						font-size: 15px;
+						font-weight: bold;
+						line-height: 10px;
 					}
 				}
 			}
@@ -93,19 +98,29 @@
 	}
 
 	.carrito-totales{
-		height: 130px;
+		height: 125px;
 		padding: 3% 3% 0;
 		background-color: white;
 
 		.carrito-totales-wrapper{
 			background-color: #F1F1F1;
+			padding: 3px 0;
+
+			.carrito-totales-total{
+				padding: 0 0 0 10%;
+			}
 
 			.carrito-totales-div{
 				.carrito-totales-div-title{
-					font-size: 12px;
+					font-size: 13px;
+				}
+				.carrito-totales-div-value{
+					font-size: 15px;
+					font-weight: bold;
+					line-height: 16px;
 				}
 				.carrito-totales-div-title, .carrito-totales-div-value{
-					padding: 3px 5px;
+					padding: 0 5px;
 				}
 			}
 		}

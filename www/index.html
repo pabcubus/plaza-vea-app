@@ -53,15 +53,7 @@
 
 	<script src="setup/app.js"></script>
 
-	<script type="text/javascript">
-		document.addEventListener("backbutton", onBackKeyDown, false);
-		function onBackKeyDown() {
-			var r = confirm("Quieres salir de la app?");
-			if (r == true) {
-				navigator.app.exitApp();
-			}
-		}
-	</script>
+	<script type="text/javascript" src="btnEvents.js"></script>
 
 	<link rel="stylesheet" href="styles/shared.min.css">
 	<link rel="stylesheet" href="styles/toolbar.min.css">
@@ -73,6 +65,7 @@
 </head>
 
 <body
+	id="plaza-vea-body"
 	ng-app="demo"
 	ng-controller="AppController as ac"
 	ng-class="{'pv-background-login' : ac.currentPath == 'login', 'pv-background-normal' : ac.currentPath != 'login'}"
@@ -83,10 +76,10 @@
 			<div ng-include="'modules/toolbar/html/toolbar.html'"></div>
 		</div>
 
-		<main flex layout="column">
+		<div flex layout="column">
 			<div ui-view layout="column" flex>
 			</div>
-		</main>
+		</div>
 
 		<div ng-include="'modules/bottom_bar/html/bottom_bar.html'" ng-hide="ac.currentPath == 'login'"></div>
 	</div>
