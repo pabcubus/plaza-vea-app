@@ -12,41 +12,50 @@ app.controller('CarritoController', function($timeout, $state, lodash, SessionSe
 	init();
 
 	function init(){
-		vm.carrito		= CarritoService.carrito;
-		vm.carritoTotal	= CarritoService.carritoTotal;
+		setCarritoData();
+		vm.selectCantidad	= [];
+		for (var i = 1; i <= 20; i++){
+			vm.selectCantidad.push(i);
+		}
 	}
 
 	function removeProducto(producto){
 		CarritoService.removeProducto(angular.copy(producto));
-		vm.carrito		= CarritoService.carrito;
-		vm.carritoTotal	= CarritoService.carritoTotal;
+		setCarritoData();
 	}
 
-	function changeCantidadProducto(){
+	function changeCantidadProducto(producto){
 		CarritoService.calcularTotalCarrito();
-		vm.carrito		= CarritoService.carrito;
-		vm.carritoTotal	= CarritoService.carritoTotal;
+		setCarritoData();
 	}
 
 	function terminarCompra(){
 		var user	= angular.copy(SessionService.user);
 
-		CarritoService.terminarCompra(user.dni, angular.copy(vm.carrito))
+		CarritoService.terminarCompra(user.id, angular.copy(vm.carrito))
 			.then(function(result){
 				$state.go('compra_completada');
 
 				$timeout(function(){
-					JsBarcode("#barcode", result.idTransaction);
 					CarritoService.clearCarrito();
 				}, 500);
 			})
-			.catch(function(){
-				navigator.notification.alert(
-					'Se presento un problema de conexión, y no se pudo terminar el proceso de compra',
-					null,
-					'Alerta',
-					'OK'
-				);
+			.catch(function(data){
+				$state.go(CarritoService.carrito.length > 0 ? 'carrito' : 'bienvenido');
+				$timeout(function(){
+					navigator.notification.alert(
+						lodash.has(data, 'codError') ? data.messageError : 'Se presento un problema de conexión, y no se pudo leer el producto',
+						null,
+						'Alerta',
+						'OK'
+					);
+				}, 500);
 			});
+	}
+
+	function setCarritoData(){
+		vm.carrito				= CarritoService.carrito;
+		vm.carritoTotal			= CarritoService.carritoTotal;
+		vm.carritoTotalString	= CarritoService.carritoTotalString;
 	}
 });

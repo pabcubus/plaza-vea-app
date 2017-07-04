@@ -2,8 +2,8 @@ app.service('CarritoService', function($q, lodash, HelperService, DataService){
 	var vm = this;
 
 	vm.carrito 				= [];
-
 	vm.carritoTotal			= 0;
+	vm.compraTransaccion	= '';
 
 	vm.setCarrito			= setCarrito;
 	vm.addProducto			= addProducto;
@@ -54,12 +54,14 @@ app.service('CarritoService', function($q, lodash, HelperService, DataService){
 		vm.carritoTotal = 0;
 
 		lodash.forEach(vm.carrito, function(prd){
-			var prodTotal	= lodash.round((prd.precio * prd.cantidad), 2);
-			prd.total		= prodTotal;
-			vm.carritoTotal	+= prodTotal;
+			var prodTotal		= parseFloat(prd.precio * prd.cantidad);
+			prd.total			= lodash.round(prodTotal, 2);
+			prd.totalString		= prd.total.toFixed(2);
+			vm.carritoTotal		+= prd.total;
 		});
 
-		vm.carritoTotal = lodash.round(vm.carritoTotal, 2);
+		vm.carritoTotal			= lodash.round(vm.carritoTotal, 2);
+		vm.carritoTotalString	= vm.carritoTotal.toFixed(2);
 
 		HelperService.storage.set(HelperService.constants.LOCALSTORAGE_SHOPPING_CART_TAG, vm.carrito, true);
 	}
@@ -69,7 +71,7 @@ app.service('CarritoService', function($q, lodash, HelperService, DataService){
 
 		var jsonRequest = {
 			"idTienda": "195",
-			"idCliente": "40220040",
+			"idCliente": dni,
 			"items": []
 		};
 
@@ -85,8 +87,13 @@ app.service('CarritoService', function($q, lodash, HelperService, DataService){
 
 		DataService.performOperation('http://10.20.12.36:7080/selfpicking/RegistrarPedido', 'POST', jsonRequest)
 			.then(function(result){
-				deferred.resolve(result.data);
-				HelperService.storage.remove(HelperService.constants.LOCALSTORAGE_SHOPPING_CART_TAG);
+				if (lodash.has(result.data, 'codError')){
+					deferred.reject(result.data);
+				} else {
+					vm.compraTransaccion = result.data;
+					deferred.resolve(result.data);
+					HelperService.storage.remove(HelperService.constants.LOCALSTORAGE_SHOPPING_CART_TAG);
+				}
 			})
 			.catch(function(data){
 				deferred.reject(data);

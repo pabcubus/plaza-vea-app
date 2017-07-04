@@ -15,6 +15,13 @@ app.controller('BottomBarController', function($rootScope, $state, CarritoServic
 	);
 
 	function scan() {
+
+		/*
+		$state.go('producto', {
+			'ean': '123456'
+		});
+		*/
+
 		cordova.plugins.barcodeScanner.scan(
 			function(result) {
 				$state.go('producto', {

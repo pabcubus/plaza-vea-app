@@ -4,8 +4,9 @@ app.service('SessionService', function($q, lodash, DataService, HelperService, C
 	vm.user = {};
 	vm.logedIn = false;
 
-	vm.login = login;
-	vm.logout = logout;
+	vm.login		= login;
+	vm.logout		= logout;
+	vm.isIDCorrect	= isIDCorrect;
 
 	init();
 
@@ -13,7 +14,7 @@ app.service('SessionService', function($q, lodash, DataService, HelperService, C
 		//{"idCliente":"40220040"}
 		var deferred = $q.defer();
 
-/*
+		/*
 		var user = {
 			id : loginText,
 			nombre : 'Pablo',
@@ -25,11 +26,11 @@ app.service('SessionService', function($q, lodash, DataService, HelperService, C
 		HelperService.storage.set(HelperService.constants.LOCALSTORAGE_USER_TAG, vm.user, true);
 
 		deferred.resolve(user);
-*/
+		*/
 
 		if (lodash.isString(loginText)) {
 			var jsonRequest = {
-				"idCliente":loginText
+				"idCliente": loginText
 			};
 
 			DataService.performOperation('http://10.20.12.36:7080/selfpicking/Login', 'POST', jsonRequest)
@@ -59,6 +60,10 @@ app.service('SessionService', function($q, lodash, DataService, HelperService, C
 		return deferred.promise;
 	}
 
+	function isIDCorrect(str, idTypeName){
+		return HelperService.string.checkStringRegex(str, (idTypeName === 'DNI' ? /^\w{8}$/ : /^\d{12}$/) );
+	}
+
 	function logout(){
 		vm.user = {};
 		vm.logedIn = false;
@@ -67,6 +72,7 @@ app.service('SessionService', function($q, lodash, DataService, HelperService, C
 
 		CarritoService.clearCarrito();
 	}
+
 
 	function init(){
 		var user = HelperService.storage.get(HelperService.constants.LOCALSTORAGE_USER_TAG, true);
@@ -86,6 +92,7 @@ app.service('SessionService', function($q, lodash, DataService, HelperService, C
 					pesable: item.pesable,
 					precio: item.precio,
 					total: item.total,
+					totalString: item.total.toFixed(2),
 					unidad: item.unidad
 				})
 			});

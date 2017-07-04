@@ -53,7 +53,7 @@ app.service('ProductoService', function($q, lodash, DataService){
 							precio:		producto.price,
 							cantidad:	cantidad,
 							image:		producto.image,
-							total:		lodash.round((cantidad * producto.price), 2)
+							total:		cantidad * producto.price
 						};
 						deferred.resolve(productoObject);
 					}

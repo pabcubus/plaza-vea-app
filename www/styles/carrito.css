@@ -46,10 +46,11 @@
         font-size: 12px; }
       .carrito .carrito-list .carrito-list-item .item-description .item-totales .item-cantidad {
         font-size: 13px;
-        width: 25px;
-        border: 1px solid #C0C0C0;
+        width: 50px;
+        border: 1px solid silver;
         padding: 5px;
-        background-color: #F8F8F8; }
+        background-color: #f8f8f8;
+        box-sizing: border-box; }
       .carrito .carrito-list .carrito-list-item .item-description .item-totales .item-precio-total-title {
         font-size: 10px;
         color: #373737; }

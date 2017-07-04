@@ -1,5 +1,3 @@
-
-
 <div class="producto" layout-align="center center" flex>
 	<div class="producto-wrapper">
 		<img data-ng-src="data:image/jpeg;base64,{{pc.producto.image}}">
@@ -23,17 +21,23 @@
 					<label class="cantidad-title">
 						Cantidad:
 					</label>
-					<input
+					<select
 						class="cantidad-input pv-text-center"
-						type="number"
+						ng-hide="pc.producto.pesable"
 						ng-model="pc.producto.cantidad"
 						ng-change="pc.changeCantidadProducto()"
+						ng-options="cantidad as cantidad for cantidad in pc.selectCantidad"></select>
+					<input
+						class="cantidad-input pv-text-center"
+						type="tel"
+						ng-show="pc.producto.pesable"
+						ng-model="pc.producto.cantidad"
 						ng-disabled="pc.producto.pesable">
 				</div>
 			</div>
 
 			<div class="producto-total">
-				Precio total: <span>S/ {{pc.producto.total}}</span>
+				Precio total: <span>S/ {{pc.producto.totalString}}</span>
 			</div>
 
 			<md-button class="pv-button-primary agregar-btn" ng-click="pc.addProducto()">

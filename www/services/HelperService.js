@@ -147,6 +147,14 @@ app.service('HelperService', function(lodash){
 			if (isEdge) 	return 'edge';
 			if (isChrome) 	return 'chrome';
 			if (isBlink) 	return 'blink';
+		},
+		convertToFloat: function(value, decimals, defaultVal) {
+			if (lodash.isString(value))
+				value = parseFloat(value);
+
+			defaultVal = lodash.isNumber(defaultVal) ? defaultVal : 0;
+			var result = (!lodash.isNaN(value) && lodash.isNumber(value)) ? value : defaultVal;
+			return result;
 		}
 	};
 

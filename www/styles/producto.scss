@@ -47,12 +47,13 @@
 
 				.cantidad-input{
 					font-size: 13px;
-					width: 40px;
+					width: 50px;
 					border: 1px solid silver;
 					padding: 0 5px;
 					background-color: #f8f8f8;
-					height: 35px;
+					height: 45px;
 					margin-left: 3px;
+					box-sizing: border-box;
 				}
 			}
 

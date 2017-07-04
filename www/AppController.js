@@ -1,10 +1,10 @@
 app.controller('AppController', function(lodash, $scope, $rootScope, $state, $timeout, $mdSidenav, SessionService){
-	var vm = this;
+	var vm					= this;
 
-	var d = new Date();
-	vm.id= d.getTime();
+	var d					= new Date();
+	vm.id					= d.getTime();
 
-	vm.backStates		= [
+	vm.backStates			= [
 		{
 			current: 'login',
 			next: null
@@ -27,11 +27,11 @@ app.controller('AppController', function(lodash, $scope, $rootScope, $state, $ti
 		}
 	]
 
-	vm.validatingLogin	= false;
-	vm.currentPath		= '';
-	vm.logedIn			= false;
-	vm.user				= {};
-	vm.loginTypes = [
+	vm.validatingLogin		= false;
+	vm.currentPath			= '';
+	vm.logedIn				= false;
+	vm.user					= {};
+	vm.loginTypes 			= [
 		{
 			name: 'DNI',
 			length: 8
@@ -41,14 +41,14 @@ app.controller('AppController', function(lodash, $scope, $rootScope, $state, $ti
 			length: 12
 		}
 	];
-	vm.selectedLoginType = vm.loginTypes[0];
+	vm.selectedLoginType	= vm.loginTypes[0];
 
-	vm.login			= login;
-	vm.logout			= logout;
-	vm.toggleOpciones	= toggleOpciones;
-	vm.toggleCarrito	= toggleCarrito;
-	vm.getCurrentPage	= getCurrentPage;
-	vm.backBtnEvent		= backBtnEvent;
+	vm.login				= login;
+	vm.logout				= logout;
+	vm.toggleOpciones		= toggleOpciones;
+	vm.toggleCarrito		= toggleCarrito;
+	vm.getCurrentPage		= getCurrentPage;
+	vm.backBtnEvent			= backBtnEvent;
 
 	$rootScope.$watch(
 		function(){
@@ -72,6 +72,7 @@ app.controller('AppController', function(lodash, $scope, $rootScope, $state, $ti
 				'¿Quieres salir de la app?',
 				function(index){
 					if (index == 1) {
+						SessionService.logout();
 						navigator.app.exitApp();
 					}
 				},
@@ -85,7 +86,7 @@ app.controller('AppController', function(lodash, $scope, $rootScope, $state, $ti
 		if(!vm.validatingLogin){
 			vm.validatingLogin = true;
 
-			if (!lodash.isNumber(vm.loginText)) {
+			if (!SessionService.isIDCorrect(vm.loginText, vm.selectedLoginType.name)) {
 				$timeout(function(){
 					vm.validatingLogin = false;
 				}, 1500);
@@ -100,7 +101,7 @@ app.controller('AppController', function(lodash, $scope, $rootScope, $state, $ti
 				return false;
 			}
 
-			var id = vm.loginText.toString();
+			var id = angular.copy(vm.loginText);
 
 			if (vm.selectedLoginType.length != id.length) {
 				$timeout(function(){

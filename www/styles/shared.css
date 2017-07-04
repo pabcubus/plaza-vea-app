@@ -22,7 +22,6 @@ body {
 
 .pv-background-normal {
   background-image: url("../images/bienvenido/back.png");
-  background-size: 100% 100%;
   background-repeat: no-repeat; }
 
 .pv-background-login {

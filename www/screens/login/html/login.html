@@ -24,11 +24,18 @@
 					</md-option>
 				</md-select>
 			</md-input-container>
-			<md-input-container flex>
+			<md-input-container ng-show="ac.selectedLoginType.name == 'DNI'" flex>
 				<label>Nº de Documento</label>
 				<input
 					name="id"
-					type="number"
+					type="tel"
+					ng-model="ac.loginText"/>
+			</md-input-container>
+			<md-input-container ng-show="ac.selectedLoginType.name == 'CE'" flex>
+				<label>Nº de Documento</label>
+				<input
+					name="id"
+					type="text"
 					ng-model="ac.loginText"/>
 			</md-input-container>
 		</div>

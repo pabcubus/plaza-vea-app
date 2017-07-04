@@ -36,19 +36,25 @@
 				<div class="item-totales" layout="row">
 					<div flex="50">
 						<label>Cantidad: </label>
+						<select
+							class="item-cantidad pv-text-center"
+							ng-hide="producto.pesable"
+							ng-model="producto.cantidad"
+							ng-change="cc.changeCantidadProducto(producto)"
+							ng-options="cantidad as cantidad for cantidad in cc.selectCantidad"></select>
 						<input
 							class="item-cantidad pv-text-center"
-							type="number"
+							type="tel"
 							ng-model="producto.cantidad"
-							ng-disabled="producto.pesable"
-							ng-change="cc.changeCantidadProducto()">
+							ng-show="producto.pesable"
+							ng-disabled="producto.pesable">
 					</div>
 					<div flex="50">
 						<div class="item-precio-total-title">
 							Precio Total:
 						</div>
 						<div class="item-precio-total-valor">
-							S/ {{producto.total}}
+							S/ {{producto.totalString}}
 						</div>
 					</div>
 				</div>
@@ -70,7 +76,7 @@
 					Total:
 				</div>
 				<div class="carrito-totales-div-value">
-					S/ {{cc.carritoTotal}}
+					S/ {{cc.carritoTotalString}}
 				</div>
 			</div>
 		</div>
