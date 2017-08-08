@@ -41,20 +41,34 @@ app.service('ProductoService', function($q, lodash, DataService){
 					if (lodash.has(result.data, 'codError')){
 						deferred.reject(result.data);
 					} else {
-						var producto			= result.data;
-						var codigoinicial 		= ean.substring(0, 2);
-						var cantidad 			= codigoinicial == '02' ? (parseInt(ean.substring(7, 12)) / 1000) : 1;
+						var producto;
+						var codigoinicial;
+						var pesable;
+						var cantidad;
+
+						// Primero chequeamos si el formato es EAN_8 o EAN_13
+						if (ean.length == 8) {
+							producto		= result.data;
+							pesable			= false;
+							cantidad 		= 1;
+						} else {
+							producto		= result.data;
+							codigoinicial 	= ean.substring(0, 2);
+							pesable			= codigoinicial == '02' ? true : false;
+							cantidad 		= codigoinicial == '02' ? (parseInt(ean.substring(7, 12)) / 1000) : 1;
+						}
 
 						var productoObject = {
-							ean:		ean,
-							nombre:		producto.nomProducto,
-							unidad:		producto.unidadMedida,
-							pesable:	codigoinicial == '02' ? true : false,
-							precio:		producto.price,
-							cantidad:	cantidad,
-							image:		producto.image,
-							total:		cantidad * producto.price
+							'ean':		ean,
+							'nombre':	producto.nomProducto,
+							'unidad':	producto.unidadMedida,
+							'pesable':	pesable,
+							'precio':	producto.price,
+							'cantidad':	cantidad,
+							'image':	producto.image,
+							'total':	cantidad * producto.price
 						};
+
 						deferred.resolve(productoObject);
 					}
 				})
