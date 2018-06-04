@@ -1,27 +1,27 @@
 {
-	"name": "demo",
-	"version": "1.0.0",
-	"main": "index.js",
-	"scripts": {
-		"prepare-win": "npm install -g bower grunt",
-		"prepare-mac": "sudo npm install -g bower grunt",
-		"serve-win": "npm install & bower install & grunt serve",
-		"serve-mac": "npm install && bower install && grunt serve"
-	},
-	"author": "",
-	"license": "ISC",
-	"description": "",
-	"devDependencies": {
-		"grunt": "^1.0.1",
-		"grunt-concurrent": "^2.3.1",
-		"grunt-contrib-cssmin": "^2.0.0",
-		"grunt-contrib-watch": "^1.0.0",
-		"grunt-sass": "^1.2.1",
-		"grunt-shell": "^2.0.0",
-		"load-grunt-tasks": "^3.5.2",
-		"serve": "^1.4.0"
-	},
-	"dependencies": {
-		"angular-ui-router": "^0.3.2"
-	}
+  "name": "plaza-vea-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "AppController.js",
+  "scripts": {
+    "prepare-win": "npm install -g bower grunt",
+    "prepare-mac": "sudo npm install -g bower grunt",
+    "serve-win": "npm install & bower install & grunt serve",
+    "serve-mac": "npm install && bower install && grunt serve"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-concurrent": "^2.3.1",
+    "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-sass": "^2.1.0",
+    "grunt-shell": "^2.1.0",
+    "load-grunt-tasks": "^4.0.0",
+    "serve": "^7.2.0"
+  },
+  "dependencies": {
+    "angular-ui-router": "^1.0.18"
+  }
 }
