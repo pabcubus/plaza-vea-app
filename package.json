@@ -3,9 +3,7 @@
     "version": "1.0.0",
     "displayName": "Plaza Vea",
     "cordova": {
-        "platforms": [
-            "android"
-        ],
+        "platforms": [],
         "plugins": {
             "cordova-plugin-dialogs": {},
             "cordova-plugin-whitelist": {},
@@ -13,7 +11,6 @@
         }
     },
     "dependencies": {
-        "cordova-android": "^6.2.3",
         "cordova-plugin-dialogs": "1",
         "cordova-plugin-whitelist": "1",
         "phonegap-plugin-barcodescanner": "6"
